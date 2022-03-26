@@ -19,6 +19,10 @@ namespace CodingPracticeService
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            var someone = new Someone();
+            
+            //var output = someone.DoSomething();
+            //Console.WriteLine($"{output}");
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
