@@ -10,19 +10,32 @@ namespace CodingPracticeUnitTests
 {
     public class CompletedProblemsTest
     {
+        // Template
         [Theory]
-        [InlineData("11", "1")]
-        public void P67AddBinary(string a, string b)
+        [InlineData()]
+        public void ProblemTemplate()
+        {
+            var expected = "";
+            var cp = new CompletedProblems();
+            var actual = ""; //cp.ProblemTemplate();
+            Assert.Equal(actual, expected);
+        }
+
+
+        [Theory]
+        [InlineData("11", "1", "100")]
+        [InlineData("1010", "1011", "10101")]
+        [InlineData("111", "111", "1110")]
+        public void P67AddBinary(string a, string b, string expected)
         {
             var cp = new CompletedProblems();
             var actual = cp.P67AddBinary(a, b);
             Assert.Equal(actual,
-                "100");
+                expected);
         }
 
-            [Theory]
-        [InlineData(new int[] { 1, 9, 9 },
-        new int[] { 9, 9, 9 })]
+        [Theory]
+        [InlineData(new int[] { 1, 9, 9 }, new int[] { 9, 9, 9 })]
         public void LC66PlusOne(int[] digitsA, int[] digitsB)
         {
             var digits2 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };

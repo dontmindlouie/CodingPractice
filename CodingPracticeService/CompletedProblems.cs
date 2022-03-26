@@ -10,45 +10,58 @@ namespace CodingPracticeService
     {
         public string P67AddBinary(string a, string b)
         {
-            var totalLength = Math.Max(a.Length, b.Length);
-            a = a.PadLeft(totalLength, '0');
-            b = b.PadLeft(totalLength, '0');
-            var carry = false;
-            var result = "";
+            // LeetCode 67. Add Binary
+            // time O(n) space O(n)
 
-            for (int i = totalLength - 1; i >= 0; i--)
+            // With result = StringBuilder();
+            // Runtime: 139 ms, faster than 14.42% of C# online submissions for Add Binary.
+            // Memory Usage: 37 MB, less than 71.47 % of C# online submissions for Add Binary.
+
+            // With string result prepend
+            // Runtime: 116 ms, faster than 40.87% of C# online submissions for Add Binary.
+            // Memory Usage: 37.5 MB, less than 46.78 % of C# online submissions for Add Binary.
+
+            // With string result append then reverse
+            // Runtime: 102 ms, faster than 59.54% of C# online submissions for Add Binary.
+            // Memory Usage: 37.7 MB, less than 32.05 % of C# online submissions for Add Binary.
+
+            // var result = new StringBuilder();
+            var result = "";
+            var ai = a.Length - 1;
+            var bi = b.Length - 1;
+            var carryover = 0;
+
+            while ((ai >= 0 || bi >= 0) || carryover >= 1)
             {
-                if (a[i] == '0' && b[i] == '0')
-                    if (carry == false)
-                        result = result.Insert(0, "0");
-                    else
-                    {
-                        result = result.Insert(0, "1");
-                        carry = false;
-                    }
-                else if (a[i] == '1' ^ b[i] == '1')
-                    if (carry == false)
-                        result = result.Insert(0, "0");
-                    else if (carry == true && i == 0)
-                        result = result.Insert(0, "10");
-                    else {
-                        result = result.Insert(0, "1");
-                        carry = false;
-                    }
-                else //both 1
+                var sum = carryover;
+
+                if (ai >= 0)
                 {
-                    if (carry == true && i == 0)
-                        result = result.Insert(0, "10");
-                    carry = true;
-                    result = result.Insert(0, "0");
+                    sum += a[ai] - '0';
                 }
+                if (bi >= 0)
+                {
+                    sum += b[bi] - '0';
+                }
+                //result = result.Append((sum % 2).ToString()[0]).ToString();
+                result = result.Insert(result.Length, (sum % 2).ToString());
+                //result = result.Insert(0, (sum % 2).ToString());
+                if (sum >= 2) carryover = 1;
+                else carryover = 0;
+
+                ai--;
+                bi--;
             }
-            return result;
+
+            result = new string(result.Reverse().ToArray());
+
+            return result.ToString();
         }
 
         public int[] LC66PlusOne(int[] digits)
         {
             // LeetCode 66.Plus One
+            // space O(1) time O(digits)
             // You are given a large integer represented as an integer array digits,
             // where each digits[i] is the ith digit of the integer. The digits are
             // ordered from most significant to least significant in left-to-right
