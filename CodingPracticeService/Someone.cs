@@ -2,12 +2,12 @@
 
 namespace CodingPracticeService
 {
-    internal class Someone
+    public class Someone
     {
         public Someone()
         {
         }
-        public int DoSomething1(string s, string t)
+        public int DoSomething(string s, string t)
         {
 
             var temp = new Dictionary<char, int>();
