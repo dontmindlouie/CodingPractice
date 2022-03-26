@@ -6,8 +6,79 @@ using System.Threading.Tasks;
 
 namespace CodingPracticeService
 {
-    class EasyCompletedProblems
+    public class CompletedProblems
     {
+        public string P67AddBinary(string a, string b)
+        {
+            var totalLength = Math.Max(a.Length, b.Length);
+            a = a.PadLeft(totalLength, '0');
+            b = b.PadLeft(totalLength, '0');
+            var carry = false;
+            var result = "";
+
+            for (int i = totalLength - 1; i >= 0; i--)
+            {
+                if (a[i] == '0' && b[i] == '0')
+                    if (carry == false)
+                        result = result.Insert(0, "0");
+                    else
+                    {
+                        result = result.Insert(0, "1");
+                        carry = false;
+                    }
+                else if (a[i] == '1' ^ b[i] == '1')
+                    if (carry == false)
+                        result = result.Insert(0, "0");
+                    else if (carry == true && i == 0)
+                        result = result.Insert(0, "10");
+                    else {
+                        result = result.Insert(0, "1");
+                        carry = false;
+                    }
+                else //both 1
+                {
+                    if (carry == true && i == 0)
+                        result = result.Insert(0, "10");
+                    carry = true;
+                    result = result.Insert(0, "0");
+                }
+            }
+            return result;
+        }
+
+        public int[] LC66PlusOne(int[] digits)
+        {
+            // LeetCode 66.Plus One
+            // You are given a large integer represented as an integer array digits,
+            // where each digits[i] is the ith digit of the integer. The digits are
+            // ordered from most significant to least significant in left-to-right
+            // order. The large integer does not contain any leading 0's.
+            // Increment the large integer by one and return the resulting array of digits.
+            bool flag = true;
+            int i = digits.Length - 1;
+            while (flag)
+            {
+                if (digits[i] != 9)
+                {
+                    digits[i]++;
+                    flag = false;
+                }
+                else if (i == 0 && digits[i] == 9)
+                {
+                    digits[i] = 0;
+                    digits = digits.Prepend(1).ToArray();
+                    flag = false;
+                }
+                else
+                {
+                    digits[i] = 0;
+                }
+                i--;
+            }
+
+            return digits;
+        }
+
         private ListNode LCP21MergeTwoLists(ListNode list1, ListNode list2)
         {
             var sortedList = new ListNode();

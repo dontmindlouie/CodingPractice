@@ -44,3 +44,5 @@ G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.dl
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\ref\CodingPracticeService.dll
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.pdb
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.genruntimeconfig.cache
+G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\xunit.abstractions.dll
+G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\xunit.core.dll

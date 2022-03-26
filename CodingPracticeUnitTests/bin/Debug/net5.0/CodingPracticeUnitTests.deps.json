@@ -1459,7 +1459,8 @@
       "CodingPracticeService/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Hosting": "5.0.0",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1"
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
+          "xunit.extensibility.core": "2.4.1"
         },
         "runtime": {
           "CodingPracticeService.dll": {}
