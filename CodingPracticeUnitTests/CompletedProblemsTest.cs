@@ -21,6 +21,18 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
 
+        [Theory]
+        [InlineData(2, 2)]
+        [InlineData(3, 3)]
+        [InlineData(4, 5)]
+        [InlineData(5, 8)]
+        public void P70ClimbStairs(int x, int expected)
+        {
+            var cp = new CompletedProblems();
+            var actual = cp.P70ClimbStairs(x);
+            Assert.Equal(expected, actual);
+        }
+
 
         [Theory]
         [InlineData("11", "1", "100")]

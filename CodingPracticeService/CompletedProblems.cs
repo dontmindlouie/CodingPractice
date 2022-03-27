@@ -8,6 +8,25 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P70ClimbStairs(int n)
+        {
+            // 70. Climbing Stairs
+            // time = O(n), space = O(1)
+            // Runtime: 24 ms, faster than 81.10% of C# online submissions for Climbing Stairs.
+            // Memory Usage: 26.6 MB, less than 13.05 % of C# online submissions for Climbing Stairs.
+            var prev = 0;
+            var prev2 = 0;
+            var current = 1;
+
+            for (int i = 1; i <= n; i++) {
+                prev2 = prev;
+                prev = current;
+                current = prev + prev2;
+            }
+
+            return current;
+        }
+
         public string P67AddBinary(string a, string b)
         {
             // LeetCode 67. Add Binary
