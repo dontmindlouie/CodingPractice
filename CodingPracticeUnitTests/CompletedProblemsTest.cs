@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using CodingPracticeService;
+using static CodingPracticeService.CompletedProblems;
+using System.Collections;
 
 namespace CodingPracticeUnitTests
 {
@@ -19,6 +21,30 @@ namespace CodingPracticeUnitTests
             var cp = new CompletedProblems();
             var actual = ""; //cp.ProblemTemplate();
             Assert.Equal(actual, expected);
+        }        // Template
+        [Theory]
+        [MemberData(nameof(P83TestData))]
+        public void P83DeleteDuplicatesTest(ListNode head, ListNode expected)
+        {
+            //var expected = "";
+            var cp = new CompletedProblems();
+            var actual = cp.P83DeleteDuplicates(head);
+            AssertListNodeEqual(actual, expected);
+        }
+        public static IEnumerable<object[]> P83TestData =>
+            new List<object[]>{
+                new object[]{new ListNode(1, new ListNode(1, new ListNode(2))),
+                    new ListNode(1, new ListNode(2))},
+                new object[]{new ListNode(1, new ListNode(1, new ListNode(1))),
+                    new ListNode(1)}
+            };
+        public void AssertListNodeEqual(ListNode actual, ListNode expected)
+        {
+            Assert.Equal(expected.val, actual.val);
+            if (actual.next == null && expected.next == null) return;
+            if (expected.next == null) Assert.Null(actual.next);
+            if (expected.next != null) Assert.NotNull(actual.next);
+            AssertListNodeEqual(actual.next, expected.next);
         }
 
         [Theory]

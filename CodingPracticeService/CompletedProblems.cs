@@ -8,6 +8,68 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<int> P94InorderTraversal(TreeNode root)
+        {
+            // 94. Binary Tree Inorder Traversal
+            // Runtime: 240 ms, faster than 14.31% of C# online submissions for Binary Tree Inorder Traversal.
+            // Memory Usage: 40.7 MB, less than 87.80 % of C# online submissions for Binary Tree Inorder Traversal.
+            var order = new List<int>();
+            if (root != null)
+                P94Traverse(root, order);
+            return order;
+        }
+
+        public IList<int> P94Traverse(TreeNode node, IList<int> order)
+        {
+            if (node.left != null) P94Traverse(node.left, order);
+            order.Add(node.val);
+            if (node.right != null) P94Traverse(node.right, order);
+            return order;
+        }
+
+        public ListNode P83DeleteDuplicates(ListNode head)
+        {
+            // 83. Remove Duplicates from Sorted List
+            // TODO: leverage that the list is sorted...
+
+            // with List
+            // time O(n) space O(n)
+            // Runtime: 88 ms, faster than 83.35% of C# online submissions for Remove Duplicates from Sorted List.
+            // Memory Usage: 40.4 MB, less than 5.48 % of C# online submissions for Remove Duplicates from Sorted List.
+
+            // with Hashset
+            // Runtime: 88 ms, faster than 83.35% of C# online submissions for Remove Duplicates from Sorted List.
+            // Memory Usage: 40.2 MB, less than 8.33 % of C# online submissions for Remove Duplicates from Sorted List.
+
+            //var dupList = new List<int>();
+            var dupList = new HashSet<int>();
+            if (head == null) return head;
+            dupList.Add(head.val);
+            var node = head;
+            while (node.next != null)
+            {
+                if (dupList.Contains(node.next.val))
+                {
+                    // duplicate, remove node
+                    if (node.next.next == null)
+                    {
+                        if (dupList.Contains(node.next.val))
+                        {
+                            node.next = null;
+                            break;
+                        }
+                    }
+                    node.next = node.next.next;
+                }
+                else
+                {
+                    dupList.Add(node.next.val);
+                    node = node.next;
+                }
+            }
+            return head;
+        }
+
         public int P70ClimbStairs(int n)
         {
             // 70. Climbing Stairs
@@ -18,7 +80,8 @@ namespace CodingPracticeService
             var prev2 = 0;
             var current = 1;
 
-            for (int i = 1; i <= n; i++) {
+            for (int i = 1; i <= n; i++)
+            {
                 prev2 = prev;
                 prev = current;
                 current = prev + prev2;
@@ -174,7 +237,6 @@ namespace CodingPracticeService
                     else list1 = list1.next;
                 }
             }
-            return sortedList;
         }
 
         private ListNode LCP21MergeTwoListv2(ListNode list1, ListNode list2)
@@ -220,7 +282,7 @@ namespace CodingPracticeService
 
             return sortedList;
         }
-        private class ListNode
+        public class ListNode
         {
             public int val;
             public ListNode next;
@@ -365,9 +427,6 @@ namespace CodingPracticeService
 
         private int P28StrStr2(string haystack, string needle)
         {
-            int needleI = 0;
-            int haystackI = 0;
-
             if (needle.Length == 0) return 0;
 
             // hay aaaaa n bba
