@@ -8,9 +8,89 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P104MaxDepth(TreeNode root)
+        {
+            // 104.Maximum Depth of Binary Tree
+            // time O(n) space O(1)
+            // Runtime: 109 ms, faster than 64.85% of C# online submissions for Maximum Depth of Binary Tree.
+            // Memory Usage: 37.9 MB, less than 75.73% of C# online submissions for Maximum Depth of Binary Tree.
+            P104maxDepth = 0;
+            if (root == null) return 0;
+            P104CalcDepth(root, P104maxDepth);
+            return P104maxDepth;
+        }
+        public static int P104maxDepth;
+        public void P104CalcDepth(TreeNode node, int tempDepth)
+        {
+            tempDepth++;
+            if (P104maxDepth < tempDepth) P104maxDepth = tempDepth;
+            if (node.left != null)
+                P104CalcDepth(node.left, tempDepth);
+            if (node.right != null)
+                P104CalcDepth(node.right, tempDepth);
+        }
+
+        public bool P101IsSymmetric(TreeNode root)
+        {
+            // LeetCode 101. Symmetric Tree
+            // time O(n) space O(1)
+
+            // slower, but use less memory. maybe use DP?
+            // Runtime: 156 ms, faster than 26.78% of C# online submissions for Symmetric Tree.
+            // Memory Usage: 38.9 MB, less than 92.54 % of C# online submissions for Symmetric Tree.
+
+            if (root == null) return true;
+            var head = root;
+            if (head.left == null && head.right == null) return true;
+            if (head.left == null ^ head.right == null) return false;
+            return P101Traverse(head.left, head.right, true);
+        }
+        public bool P101Traverse(TreeNode leftNode, TreeNode rightNode, bool isSym)
+        {
+            if (leftNode.val != rightNode.val) return false;
+            if (leftNode.left == null ^ rightNode.right == null) return false;
+            if (leftNode.right == null ^ rightNode.left == null) return false;
+
+            if (leftNode.left != null && rightNode.right != null)
+                isSym = P101Traverse(leftNode.left, rightNode.right, isSym);
+
+            if (leftNode.right != null && rightNode.left != null)
+                isSym = P101Traverse(leftNode.right, rightNode.left, isSym);
+
+            return isSym;
+
+        }
+
+        public bool P100IsSameTree(TreeNode p, TreeNode q)
+        {
+            // 100. Same Tree
+
+            // time O(p+q) space O(p+q)
+            // Runtime: 133 ms, faster than 47.51% of C# online submissions for Same Tree.
+            // Memory Usage: 38.6 MB, less than 60.77 % of C# online submissions for Same Tree.
+
+            var result = true;
+            if (p == null && q == null) return true;
+            if (p == null ^ q == null) return false;
+            result = Traverse(p, q, result);
+            return result;
+        }
+        public bool Traverse(TreeNode p, TreeNode q, bool result)
+        {
+            if (p.val != q.val) return false;
+            if (p.left == null ^ q.left == null) return false;
+            if (p.left != null && q.left != null)
+                result = Traverse(p.left, q.left, result);
+            if (p.right == null ^ q.right == null) return false;
+            if (p.right != null && q.right != null)
+                result = Traverse(p.right, q.right, result);
+            return result;
+        }
+
         public IList<int> P94InorderTraversal(TreeNode root)
         {
             // 94. Binary Tree Inorder Traversal
+            // time O(n) space O(n)
             // Runtime: 240 ms, faster than 14.31% of C# online submissions for Binary Tree Inorder Traversal.
             // Memory Usage: 40.7 MB, less than 87.80 % of C# online submissions for Binary Tree Inorder Traversal.
             var order = new List<int>();
