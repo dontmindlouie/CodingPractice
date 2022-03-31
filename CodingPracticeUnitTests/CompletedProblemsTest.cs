@@ -21,7 +21,26 @@ namespace CodingPracticeUnitTests
             var cp = new CompletedProblems();
             var actual = ""; //cp.ProblemTemplate();
             Assert.Equal(actual, expected);
-        }        // Template
+        }
+
+        [Theory]
+        [MemberData(nameof(P108TestData))]
+        public void P108SortedArrayToBstTest(int[] nums, TreeNode expected)
+        {
+            var cp = new CompletedProblems();
+            var actual = cp.P108SortedArrayToBST(nums);
+            Assert.Equal(actual, expected);
+        }
+        public static IEnumerable<object[]> P108TestData =>
+            new List<object[]>
+            {
+                new object[]{new int[] {1,3}, new TreeNode()},
+                new object[]{new int[] {-10,-3,0,5,9}, new TreeNode()},
+                new object[]{new int[] { -10, -6, -3, -1, 0, 2, 4, 6 },
+                    new TreeNode(0, new TreeNode(-10, null, new TreeNode(-3)),
+                    new TreeNode(5, null, new TreeNode(9)))}
+            };
+
         [Theory]
         [MemberData(nameof(P83TestData))]
         public void P83DeleteDuplicatesTest(ListNode head, ListNode expected)

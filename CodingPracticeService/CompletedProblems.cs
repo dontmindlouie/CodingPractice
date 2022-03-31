@@ -8,6 +8,49 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public TreeNode P108SortedArrayToBST(int[] nums)
+        {
+            // 108. Convert Sorted Array to Binary Search Tree
+
+            // time O(n) space O(n)
+            // Runtime: 104 ms, faster than 70.39% of C# online submissions for Convert Sorted Array to Binary Search Tree.
+            // Memory Usage: 37.9 MB, less than 40.03 % of C# online submissions for Convert Sorted Array to Binary Search Tree.
+
+            if (nums.Length == 0 || nums == null) return null;
+            int min = 0;
+            int max = nums.Length - 1;
+            int mid = (min + max) / 2;
+
+            var head = new TreeNode(nums[mid]);
+            var nodeQ = new Queue<(TreeNode, int, int)>();
+            nodeQ.Enqueue((head, min, max));
+            (TreeNode, int, int) tempNode;
+            //-10,-3,0,5,9
+            while (nodeQ.Count > 0)
+            {
+                tempNode = nodeQ.Dequeue();
+                min = tempNode.Item2;
+                max = tempNode.Item3;
+                mid = (max + min) / 2;
+
+                if (min <= mid - 1)
+                {
+                    var leftMid = (mid -1 + min) / 2;
+                    tempNode.Item1.left = new TreeNode(nums[leftMid]);
+                    nodeQ.Enqueue((tempNode.Item1.left, min, mid - 1));
+                }
+
+                if (max >= mid + 1)
+                {
+                    var rightMid = (mid + 1 + max) / 2;
+                    tempNode.Item1.right = new TreeNode(nums[rightMid]);
+                    nodeQ.Enqueue((tempNode.Item1.right, mid + 1, max));
+                }
+            }
+
+            return head;
+        }
+
         public int P104MaxDepth(TreeNode root)
         {
             // 104.Maximum Depth of Binary Tree
@@ -72,18 +115,18 @@ namespace CodingPracticeService
             var result = true;
             if (p == null && q == null) return true;
             if (p == null ^ q == null) return false;
-            result = Traverse(p, q, result);
+            result = P100Traverse(p, q, result);
             return result;
         }
-        public bool Traverse(TreeNode p, TreeNode q, bool result)
+        public bool P100Traverse(TreeNode p, TreeNode q, bool result)
         {
             if (p.val != q.val) return false;
             if (p.left == null ^ q.left == null) return false;
             if (p.left != null && q.left != null)
-                result = Traverse(p.left, q.left, result);
+                result = P100Traverse(p.left, q.left, result);
             if (p.right == null ^ q.right == null) return false;
             if (p.right != null && q.right != null)
-                result = Traverse(p.right, q.right, result);
+                result = P100Traverse(p.right, q.right, result);
             return result;
         }
 
@@ -453,13 +496,13 @@ namespace CodingPracticeService
             {
                 for (int j = 0; j + i < nums.Length; j++)
                 {
-                    int sum = SumSubArray(nums, i, j);
+                    int sum = P53SumSubArray(nums, i, j);
                     if (sum > largestSum) largestSum = sum;
                 }
             }
             return largestSum;
         }
-        private int SumSubArray(int[] nums, int i, int j)
+        private int P53SumSubArray(int[] nums, int i, int j)
         {
             int localSum = 0;
             for (int k = i; k <= (i + j); k++)
@@ -504,7 +547,6 @@ namespace CodingPracticeService
             return -1; //needle not found
 
         }
-
         private int P28StrStr2(string haystack, string needle)
         {
             if (needle.Length == 0) return 0;
@@ -529,10 +571,8 @@ namespace CodingPracticeService
             }
             return -1;
         }
-
         private void P88Merge2SortedArrays(int[] nums1, int m, int[] nums2, int n)
         {
-
             int i1 = m - 1;
             int i2 = n - 1;
             int i = nums1.Length - 1;
@@ -560,10 +600,8 @@ namespace CodingPracticeService
                 i--;
             }
         }
-
         private int[] P350Intersect(int[] nums1, int[] nums2)
         {
-
             var result = new List<int>();
 
             // nums1 = [1,2,2,1], nums2 = [2,2]
@@ -606,7 +644,6 @@ namespace CodingPracticeService
         }
         private int[][] P566MatrixReshape(int[][] mat, int r, int c)
         {
-
             int[][] result = new int[r][];
             var interimList = new List<int>();
             for (int rowi = 0; rowi < mat.Length; rowi++)
@@ -641,10 +678,8 @@ namespace CodingPracticeService
             if (interimi != interimList.Count) return mat;
             return result.ToArray();
         }
-
         private int P58LengthOfLastWord(string s)
         {
-
             // find index of last space
             int noBeginSpaceCount = 0;
             int wordCount = 0;
@@ -685,7 +720,6 @@ namespace CodingPracticeService
                 return wordCount;
             }
         }
-
         private IList<IList<int>> P118PascalTriangle(int numRows)
         {
             IList<IList<int>> triangle = new List<IList<int>>()
@@ -718,7 +752,6 @@ namespace CodingPracticeService
 
             return triangle;
         }
-
         private int RandomSomething2(int[] A)
         {
             // original is O(n^2)
@@ -769,27 +802,6 @@ namespace CodingPracticeService
             return Int32.Parse(aString);
         }
 
-        public TreeNode P108SortedArrayToBST(int[] nums)
-        {
-
-            int midi = nums.Length / 2;
-            var root = new TreeNode(nums[midi]);
-
-            // [-10,-3,0,5,9]
-
-            foreach (var num in nums)
-            {
-                if (num == nums[midi]) continue;
-
-                var newNode = new TreeNode(num);
-                var travNode = root;
-
-                // traverse to correct spot
-                P108AddNode(travNode, num);
-
-            }
-            return root;
-        }
         public TreeNode P108AddNode(TreeNode travNode, int num)
         {
             if (num > travNode.val)
