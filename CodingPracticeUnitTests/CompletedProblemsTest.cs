@@ -29,17 +29,34 @@ namespace CodingPracticeUnitTests
         {
             var cp = new CompletedProblems();
             var actual = cp.P108SortedArrayToBST(nums);
-            Assert.Equal(actual, expected);
+            AssertTreeEqual(actual, expected);
         }
         public static IEnumerable<object[]> P108TestData =>
             new List<object[]>
             {
-                new object[]{new int[] {1,3}, new TreeNode()},
-                new object[]{new int[] {-10,-3,0,5,9}, new TreeNode()},
-                new object[]{new int[] { -10, -6, -3, -1, 0, 2, 4, 6 },
-                    new TreeNode(0, new TreeNode(-10, null, new TreeNode(-3)),
-                    new TreeNode(5, null, new TreeNode(9)))}
+                new object[]{new int[] {1,3}, new TreeNode(1, null, new TreeNode(3))},
+                //[0,-10,5,null,-3,null,9]
+                new object[]{new int[] {-10,-3,0,5,9}, new TreeNode(0, new TreeNode(-10, null, new TreeNode(-3)),
+                    new TreeNode(5,null, new TreeNode(9)))},
+                //new object[]{new int[] { -10, -6, -3, -1, 0, 2, 4, 6 },
+                //    new TreeNode(0, new TreeNode(-10, null, new TreeNode(-3)),
+                //    new TreeNode(5, null, new TreeNode(9)))}
             };
+
+        public void AssertTreeEqual(TreeNode head1, TreeNode head2)
+        {
+            Assert.Equal(head1.val, head2.val);
+
+            if (head1.left == null) Assert.Null(head2.left);
+            if (head2.left == null) Assert.Null(head1.left);
+            if (head1.left != null && head2.left != null)
+                AssertTreeEqual(head1.left, head2.left);
+
+            if (head1.right == null) Assert.Null(head2.right);
+            if (head2.right == null) Assert.Null(head1.right);
+            if (head1.right != null && head2.right != null)
+                AssertTreeEqual(head1.right, head2.right);
+        }
 
         [Theory]
         [MemberData(nameof(P83TestData))]
