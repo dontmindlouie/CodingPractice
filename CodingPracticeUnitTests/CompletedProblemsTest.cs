@@ -25,11 +25,11 @@ namespace CodingPracticeUnitTests
 
         [Theory]
         [MemberData(nameof(P110TestData))]
-        public void P110IsBalanced(TreeNode root, bool expected)
+        public void P110IsBalancedTest(TreeNode root, bool expected)
         {
             //var expected = "";
             var cp = new CompletedProblems();
-            var actual = cp.IsBalanced(root);
+            var actual = cp.P110IsBalanced(root);
             Assert.Equal(actual, expected);
         }
         public static IEnumerable<object[]> P110TestData =>

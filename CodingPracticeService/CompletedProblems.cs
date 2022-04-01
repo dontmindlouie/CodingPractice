@@ -8,17 +8,43 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
-        public bool IsBalanced(TreeNode root)
+        public int P111MinDepth(TreeNode root)
+        {
+            // 111.Minimum Depth of Binary Tree
+            // time O(n) space O(1)
+            // Runtime: 389 ms, faster than 41.09% of C# online submissions for Minimum Depth of Binary Tree.
+            // Memory Usage: 55.7 MB, less than 82.30 % of C# online submissions for Minimum Depth of Binary Tree.
+
+            if (root == null) return 0;
+            min = -1;
+            Traverse(root, 0);
+            return min;
+        }
+        public static int min;
+        public void Traverse(TreeNode node, int height)
+        {
+            if (node == null) return;
+            height++;
+            if (node.left == null && node.right == null)
+            {
+                if (min > height || min == -1) min = height;
+            }
+            Traverse(node.left, height);
+            Traverse(node.right, height);
+            return;
+        }
+
+        public bool P110IsBalanced(TreeNode root)
         {
             if (root == null) return true;
             var heightSet = new HashSet<int>();
-            var result = Traverse(root, heightSet, 0);
+            var result = P110Traverse(root, heightSet, 0);
 
             return result;
 
         }
 
-        public bool Traverse(TreeNode node, HashSet<int> heightSet, int currHeight)
+        public bool P110Traverse(TreeNode node, HashSet<int> heightSet, int currHeight)
         {
             currHeight++;
             if (node.left == null && node.right == null)
@@ -33,11 +59,11 @@ namespace CodingPracticeService
                 heightSet.Add(currHeight);
             }
             if (node.left != null)
-                if (Traverse(node.left, heightSet, currHeight) == false)
+                if (P110Traverse(node.left, heightSet, currHeight) == false)
                     return false;
 
             if (node.right != null)
-                if (Traverse(node.right, heightSet, currHeight) == false)
+                if (P110Traverse(node.right, heightSet, currHeight) == false)
                     return false;
             return true;
 
