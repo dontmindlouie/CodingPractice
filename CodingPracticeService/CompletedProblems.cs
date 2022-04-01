@@ -8,6 +8,20 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P136SingleNumber(int[] nums)
+        {
+            // 136. Single Number
+            // time O(n) space O(1)
+            // Runtime: 110 ms, faster than 80.45% of C# online submissions for Single Number.
+            // Memory Usage: 40 MB, less than 70.49 % of C# online submissions for Single Number.
+
+            int paired = 0;
+            foreach (var num in nums)
+            {
+                paired ^= num;
+            }
+            return paired;
+        }
         public bool P112HasPathSum(TreeNode root, int targetSum)
         {
             // 112.Path Sum

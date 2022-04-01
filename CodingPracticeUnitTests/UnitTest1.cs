@@ -7,6 +7,31 @@ namespace CodingPracticeUnitTests
     public class UnitTest1
     {
         [Fact]
+        public void XorTest()
+        {
+            var testTrue = true;
+            var testFalse = false;
+
+            testTrue ^= true;
+            testTrue ^= false;
+            testFalse ^= true;
+            testFalse ^= false;
+
+            var zero = 0;
+            zero ^= 0;
+            zero = 0;
+            zero ^= 1;
+
+            var one = 1;
+            one ^= 0;
+            one = 1;
+            one ^= 1;
+
+            var two = 2;
+            two ^= 2;
+
+        }
+        [Fact]
         //[InlineData(new ListNode(1, new ListNode(1)), new ListNode(1, new ListNode(2))]
         //[InlineData("}", false)]
         public void TestSomething()//(ListNode list1, ListNode list2)
