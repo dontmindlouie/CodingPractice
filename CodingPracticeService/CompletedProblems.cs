@@ -8,9 +8,44 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool IsBalanced(TreeNode root)
+        {
+            if (root == null) return true;
+            var heightSet = new HashSet<int>();
+            var result = Traverse(root, heightSet, 0);
+
+            return result;
+
+        }
+
+        public bool Traverse(TreeNode node, HashSet<int> heightSet, int currHeight)
+        {
+            currHeight++;
+            if (node.left == null && node.right == null)
+            {
+                foreach (var height in heightSet)
+                {
+                    if (height - 1 > currHeight || currHeight > height + 1)
+                    {
+                        return false;
+                    }
+                }
+                heightSet.Add(currHeight);
+            }
+            if (node.left != null)
+                if (Traverse(node.left, heightSet, currHeight) == false)
+                    return false;
+
+            if (node.right != null)
+                if (Traverse(node.right, heightSet, currHeight) == false)
+                    return false;
+            return true;
+
+        }
         public TreeNode P108SortedArrayToBST(int[] nums)
         {
             // 108. Convert Sorted Array to Binary Search Tree
+            // Breadth first traversal
             // time O(n) space O(n)
             // Runtime: 104 ms, faster than 70.39% of C# online submissions for Convert Sorted Array to Binary Search Tree.
             // Memory Usage: 37.9 MB, less than 40.03 % of C# online submissions for Convert Sorted Array to Binary Search Tree.
@@ -34,7 +69,7 @@ namespace CodingPracticeService
 
                 if (min <= mid - 1)
                 {
-                    var leftMid = (mid -1 + min) / 2;
+                    var leftMid = (mid - 1 + min) / 2;
                     tempNode.Item1.left = new TreeNode(nums[leftMid]);
                     nodeQ.Enqueue((tempNode.Item1.left, min, mid - 1));
                 }

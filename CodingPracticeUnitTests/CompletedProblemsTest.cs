@@ -24,6 +24,41 @@ namespace CodingPracticeUnitTests
         }
 
         [Theory]
+        [MemberData(nameof(P110TestData))]
+        public void P110IsBalanced(TreeNode root, bool expected)
+        {
+            //var expected = "";
+            var cp = new CompletedProblems();
+            var actual = cp.IsBalanced(root);
+            Assert.Equal(actual, expected);
+        }
+        public static IEnumerable<object[]> P110TestData =>
+        new List<object[]>
+        {
+            // [1,
+            // null,2,
+            // null,3]
+            // false, wtf
+
+            // [3,
+            // 9,20,
+            // null,null,15,7], true
+            new object[]{new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15),new TreeNode(7))),
+                true},
+            //[1,
+            //2,3,
+            //4,5,6,null,
+            //8] true
+            new object[]{new TreeNode(1, new TreeNode(2, new TreeNode(4, new TreeNode(8)), new TreeNode(5)), 
+                new TreeNode(3, new TreeNode(6))), true
+                },
+            new object[]{new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4), new TreeNode(4)),
+                new TreeNode(3)), new TreeNode(2)), false}
+
+
+        };
+
+        [Theory]
         [MemberData(nameof(P108TestData))]
         public void P108SortedArrayToBstTest(int[] nums, TreeNode expected)
         {
