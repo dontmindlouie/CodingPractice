@@ -8,6 +8,27 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P112HasPathSum(TreeNode root, int targetSum)
+        {
+            // 112.Path Sum
+            // time O(n) space O(1)
+            // Runtime: 88 ms, faster than 97.47% of C# online submissions for Path Sum.
+            // Memory Usage: 42.5 MB, less than 7.27 % of C# online submissions for Path Sum.
+
+            if (root == null) return false;
+            int prevSum = 0;
+            return P112Traverse(root, targetSum, prevSum);
+        }
+        public bool P112Traverse(TreeNode node, int targetSum, int prevSum)
+        {
+            if (node == null) return false;
+            var currSum = prevSum += node.val;
+            if (currSum == targetSum && node.left == null && node.right == null) return true;
+            if (P112Traverse(node.left, targetSum, currSum) == true) return true;
+            if (P112Traverse(node.right, targetSum, currSum) == true) return true;
+            return false;
+        }
+
         public int P111MinDepth(TreeNode root)
         {
             // 111.Minimum Depth of Binary Tree
