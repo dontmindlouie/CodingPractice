@@ -23,6 +23,18 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
 
+        [Theory]
+        [InlineData()]
+        public void P160GetIntersectionNodeTest()
+        {
+            var intersectNodes = new ListNode(2, new ListNode(4));
+            var nodeA = new ListNode(1, new ListNode(9, new ListNode(1, intersectNodes)));
+            var nodeB = new ListNode(3, intersectNodes);
+            var expected = intersectNodes;
+            var cp = new CompletedProblems();
+            var actual = cp.P160GetIntersectionNode(nodeA, nodeB);
+            Assert.Equal(actual, expected);
+        }
 
         [Theory]
         [InlineData(3)]

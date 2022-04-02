@@ -8,8 +8,43 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
-        
 
+        public ListNode P160GetIntersectionNode(ListNode headA, ListNode headB)
+        {
+        // 160.Intersection of Two Linked Lists
+        // time O(A*B) space O(A+B)
+        // Runtime: 669 ms, faster than 11.20 % of C# online submissions for Intersection of Two Linked Lists.
+        // Memory Usage: 47 MB, less than 16.15 % of C# online submissions for Intersection of Two Linked Lists.
+
+            var currNodeA = headA;
+            var currNodeB = headB;
+            var nodeListA = new List<ListNode>();
+            var nodeListB = new List<ListNode>();
+            // [1,9,1,2,4]
+            // [3,2,4]
+            while (currNodeA != null || currNodeB != null)
+            {
+                if (currNodeA != null)
+                {
+                    nodeListA.Add(currNodeA);
+                    foreach (var node in nodeListB)
+                    {
+                        if (node == currNodeA) return currNodeA;
+                    }
+                    currNodeA = currNodeA.next;
+                }
+                if (currNodeB != null)
+                {
+                    nodeListB.Add(currNodeB);
+                    foreach (var node in nodeListA)
+                    {
+                        if (node == currNodeB) return currNodeB;
+                    }
+                    currNodeB = currNodeB.next;
+                }
+            }
+            return null;
+        }
 
         public IList<int> P145PostorderTraversal(TreeNode root)
         {
