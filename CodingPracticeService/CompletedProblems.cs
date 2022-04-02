@@ -8,6 +8,52 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<int> P119GetRow(int rowIndex)
+        {
+            // LeetCode 119 Pascal Triangle II
+            // time O(rowIndex2) space O(rowIndex)
+            // Runtime: 121 ms, faster than 54.05% of C# online submissions for Pascal's Triangle II.
+            // Memory Usage: 34.3 MB, less than 98.05 % of C# online submissions for Pascal's Triangle II.
+
+            var tri = new List<int>() { 1 };
+
+            // 1
+            // 11
+            // 121
+            // 1331
+            for (int i = 0; i < rowIndex; i++)
+            {
+                tri.Add(tri[tri.Count - 1]);
+                for (int j = tri.Count - 2; j > 0; j--)
+                {
+                    tri[j] = tri[j - 1] + tri[j];
+                }
+            }
+            return tri;
+        }
+
+        public bool P141HasCycle(ListNode head)
+        {
+            // 141. Linked List Cycle
+            // time O(n) space O(1)
+            // Runtime: 113 ms, faster than 78.26% of C# online submissions for Linked List Cycle.
+            // Memory Usage: 42 MB, less than 39.84 % of C# online submissions for Linked List Cycle.
+            if (head == null) return false;
+            var slow = head;
+            if (head.next == null) return false;
+            var fast = head.next;
+            return P141Traverse(slow, fast);
+            var tri = new List<int>() { 1 };
+        }
+        public bool P141Traverse(ListNode slow, ListNode fast)
+        {
+            if (fast == null) return false;
+            if (fast.next == null) return false;
+            if (fast.next.next == null) return false;
+            if (slow == fast) return true;
+            return P141Traverse(slow.next, fast.next.next);
+        }
+
         public int P136SingleNumber(int[] nums)
         {
             // 136. Single Number
@@ -52,11 +98,11 @@ namespace CodingPracticeService
 
             if (root == null) return 0;
             min = -1;
-            Traverse(root, 0);
+            P111Traverse(root, 0);
             return min;
         }
         public static int min;
-        public void Traverse(TreeNode node, int height)
+        public void P111Traverse(TreeNode node, int height)
         {
             if (node == null) return;
             height++;
@@ -64,8 +110,8 @@ namespace CodingPracticeService
             {
                 if (min > height || min == -1) min = height;
             }
-            Traverse(node.left, height);
-            Traverse(node.right, height);
+            P111Traverse(node.left, height);
+            P111Traverse(node.right, height);
             return;
         }
 

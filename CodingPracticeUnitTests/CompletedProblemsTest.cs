@@ -23,6 +23,17 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
 
+
+        [Theory]
+        [InlineData(3)]
+        public void P119GetRowTest(int rowIndex)
+        {
+            var expected = new List<int>() { 1, 3, 3, 1 };
+            var cp = new CompletedProblems();
+            var actual = cp.P119GetRow(rowIndex);
+            Assert.Equal(actual, expected);
+        }
+
         [Theory]
         [MemberData(nameof(P110TestData))]
         public void P110IsBalancedTest(TreeNode root, bool expected)
