@@ -8,6 +8,26 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<int> P144PreorderTraversal(TreeNode root)
+        {
+            //LeetCode 144. Binary Tree Preorder Traversal
+
+            // time O(root) space O(root)
+            // Runtime: 246 ms, faster than 13.07% of C# online submissions for Binary Tree Preorder Traversal.
+            // Memory Usage: 40.9 MB, less than 49.04 % of C# online submissions for Binary Tree Preorder Traversal.
+            var valList = new List<int>();
+            if (root == null) return valList;
+            P144Traverse(root, valList);
+            return valList;
+        }
+        public void P144Traverse(TreeNode node, IList<int> valList)
+        {
+            if (node == null) return;
+            valList.Add(node.val);
+            P144Traverse(node.left, valList);
+            P144Traverse(node.right, valList);
+            return;
+        }
         public IList<int> P119GetRow(int rowIndex)
         {
             // LeetCode 119 Pascal Triangle II
