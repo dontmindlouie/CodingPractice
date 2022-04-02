@@ -1460,6 +1460,7 @@
         "dependencies": {
           "Microsoft.Extensions.Hosting": "5.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
+          "xunit.assert": "2.4.1",
           "xunit.extensibility.core": "2.4.1"
         },
         "runtime": {
