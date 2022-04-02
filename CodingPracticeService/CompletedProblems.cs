@@ -8,6 +8,27 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<int> P145PostorderTraversal(TreeNode root)
+        {
+            // 145. Binary Tree Postorder Traversal
+            // time O(root) space O(root)
+
+            // Runtime: 207 ms, faster than 35.21% of C# online submissions for Binary Tree Postorder Traversal.
+            // Memory Usage: 40.5 MB, less than 94.56% of C# online submissions for Binary Tree Postorder Traversal.
+
+            var valList = new List<int>();
+            P145Traverse(root, valList);
+            return valList;
+        }
+
+        public void P145Traverse(TreeNode node, IList<int> valList)
+        {
+            if (node == null) return;
+            P145Traverse(node.left, valList);
+            P145Traverse(node.right, valList);
+            valList.Add(node.val);
+            return;
+        }
         public IList<int> P144PreorderTraversal(TreeNode root)
         {
             //LeetCode 144. Binary Tree Preorder Traversal
