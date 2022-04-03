@@ -8,6 +8,27 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P171TitleToNumber(string columnTitle)
+        {
+            // 171. Excel Sheet Column Number
+            // time O(n) space O(1)
+            // base 26 to base 10
+            // Runtime: 113 ms, faster than 15.11% of C# online submissions for Excel Sheet Column Number.
+            // Memory Usage: 37 MB, less than 30.86 % of C# online submissions for Excel Sheet Column Number.
+            
+            var abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            double result = 0;
+
+            for (int i = 0; i < columnTitle.Length; i++)
+            {
+                var remain = (abc.IndexOf(columnTitle[i]) + 1)
+                    * Math.Pow(26, columnTitle.Length - 1 - i);
+                result += remain;
+                //next = (abc.IndexOf(columnTitle[i]) + next) / 10;
+            }
+
+            return (Int32)result;
+        }
         public int P169MajorityElement(int[] nums)
         {
             // 169. Majority Element
@@ -15,6 +36,7 @@ namespace CodingPracticeService
             // Runtime: 143 ms, faster than 50.07% of C# online submissions for Majority Element.
             //Memory Usage: 41 MB, less than 49.13% of C# online submissions for Majority Element.
             var majority = (nums.Length) / 2;
+
             // numMap num, count of num
             var numMap = new Dictionary<int, int>();
             foreach (var num in nums)
@@ -39,7 +61,7 @@ namespace CodingPracticeService
             // Memory Usage: 37.1 MB, less than 6.27 % of C# online submissions for Excel Sheet Column Title.
             string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string result = "";
-
+            
             while (columnNumber > 0)
             {
                 var remain = columnNumber % 26;

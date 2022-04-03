@@ -23,6 +23,19 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
 
+        // P171TitleToNumber
+        [Theory]
+        //[InlineData("A", 1)]
+        [InlineData("AB", 28)]
+        public void P171TitleToNumber(string input, int expected)
+        {
+            //var expected = 1;
+            var cp = new CompletedProblems();
+            var actual = cp.P171TitleToNumber(input);
+            Assert.Equal(actual, expected);
+        }
+
+
         [Theory]
         [InlineData(701, "ZY")]
         //[InlineData(28, "AB")]
