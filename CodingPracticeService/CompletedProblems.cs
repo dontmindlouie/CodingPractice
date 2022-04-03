@@ -8,6 +8,29 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P169MajorityElement(int[] nums)
+        {
+            // 169. Majority Element
+            // time O(n) space O(n) / O(n/2)
+            // Runtime: 143 ms, faster than 50.07% of C# online submissions for Majority Element.
+            //Memory Usage: 41 MB, less than 49.13% of C# online submissions for Majority Element.
+            var majority = (nums.Length) / 2;
+            // numMap num, count of num
+            var numMap = new Dictionary<int, int>();
+            foreach (var num in nums)
+            {
+                if (numMap.TryAdd(num, 1))
+                {
+                }
+                else
+                {
+                    numMap[num]++;
+                }
+                if (numMap[num] > majority) return num;
+            }
+            return 0;
+        }
+
         public string P168ConvertToTitle(int columnNumber)
         {
             // 168. Excel Sheet Column Title
