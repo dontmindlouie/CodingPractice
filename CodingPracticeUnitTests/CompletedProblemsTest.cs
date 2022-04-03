@@ -24,6 +24,17 @@ namespace CodingPracticeUnitTests
         }
 
         [Theory]
+        [InlineData(701, "ZY")]
+        //[InlineData(28, "AB")]
+        public void P168ConvertToTitle(int input, string expected)
+        {
+            //var expected = "AB";
+            var cp = new CompletedProblems();
+            var actual = cp.P168ConvertToTitle(input);
+            Assert.Equal(actual, expected);
+        }
+
+        [Theory]
         [InlineData()]
         public void P160GetIntersectionNodeTest()
         {

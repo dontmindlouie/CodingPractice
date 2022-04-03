@@ -8,13 +8,48 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string P168ConvertToTitle(int columnNumber)
+        {
+            // 168. Excel Sheet Column Title
+            // time O(1) space O(1)
+            // Runtime: 64 ms, faster than 93.10% of C# online submissions for Excel Sheet Column Title.
+            // Memory Usage: 37.1 MB, less than 6.27 % of C# online submissions for Excel Sheet Column Title.
+            string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string result = "";
+
+            while (columnNumber > 0)
+            {
+                var remain = columnNumber % 26;
+                if (remain == 0)
+                {
+                    result = abc[25] + result;
+                    columnNumber--;
+                }
+                else result = abc[remain - 1] + result;
+                columnNumber /= 26;
+            }
+
+            return result;
+        }
+
+            //  A   A
+            // AA   AA
+            // AB   BA
+            // AZ   ZA
+            // BA   AB
+            // BB
+            // ZZ
+            //AAA
+            //AAB
+
 
         public ListNode P160GetIntersectionNode(ListNode headA, ListNode headB)
         {
-        // 160.Intersection of Two Linked Lists
-        // time O(A*B) space O(A+B)
-        // Runtime: 669 ms, faster than 11.20 % of C# online submissions for Intersection of Two Linked Lists.
-        // Memory Usage: 47 MB, less than 16.15 % of C# online submissions for Intersection of Two Linked Lists.
+            // 160.Intersection of Two Linked Lists
+            // time O(A*B) space O(A+B)
+            // TODO: remove the lists and iterate from the head;
+            // Runtime: 669 ms, faster than 11.20 % of C# online submissions for Intersection of Two Linked Lists.
+            // Memory Usage: 47 MB, less than 16.15 % of C# online submissions for Intersection of Two Linked Lists.
 
             var currNodeA = headA;
             var currNodeB = headB;
