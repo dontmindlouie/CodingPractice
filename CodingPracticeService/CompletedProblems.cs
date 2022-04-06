@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,26 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public uint P190ReverseBits(uint n)
+        {
+            // 190. Reverse Bits
+            // time O(32) or O(1) space O(1)
+            // Runtime: 46 ms, faster than 12.92% of C# online submissions for Reverse Bits.
+            // Memory Usage: 22.7 MB, less than 80.20% of C# online submissions for Reverse Bits.
+            uint temp;
+            uint result = 0;
+            uint shift;
+            for (int i = 0; i < 32; i++)
+            {
+                temp = n;
+                shift = temp & 1;
+                result <<= 1;
+                result = result | shift;
+                n >>= 1;
+            }
+            return result;
+        }
+
         public int P171TitleToNumber(string columnTitle)
         {
             // 171. Excel Sheet Column Number
@@ -24,7 +45,6 @@ namespace CodingPracticeService
                 var remain = (abc.IndexOf(columnTitle[i]) + 1)
                     * Math.Pow(26, columnTitle.Length - 1 - i);
                 result += remain;
-                //next = (abc.IndexOf(columnTitle[i]) + next) / 10;
             }
 
             return (Int32)result;

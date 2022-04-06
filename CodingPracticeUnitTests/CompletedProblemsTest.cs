@@ -23,7 +23,18 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
 
-        // P171TitleToNumber
+        [Fact]
+        public void P190ReverseBits()
+        {
+
+            uint input = 43261596;
+            uint expected = 964176192;
+            uint input1 = 11;
+            var cp = new CompletedProblems();
+            var actual = cp.P190ReverseBits(input);
+            Assert.Equal(actual, expected);
+        }
+
         [Theory]
         //[InlineData("A", 1)]
         [InlineData("AB", 28)]

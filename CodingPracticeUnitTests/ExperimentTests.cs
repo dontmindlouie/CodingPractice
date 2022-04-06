@@ -4,8 +4,62 @@ using Xunit;
 
 namespace CodingPracticeUnitTests
 {
-    public class UnitTest1
+    public class ExperimentTests
     {
+        [Fact]
+        public void BitWiseShiftTest()
+        {
+            int testInt1 = 11;
+            var testBit1 = Convert.ToString(testInt1,2); // 1011
+            int testInt2 = 9;
+            var testBit2 = Convert.ToString(testInt2, 2); // 1001
+
+            var result1 = testInt1 << 1;
+            var result2 = testInt1 >> 1;
+
+            var result3 = GetBit(testInt1, 3);
+            var result4 = SetBit(testInt1, 1, 2);
+            var result5 = SetBit(testInt1, 0, 1);
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value">Value to evaluate</param>
+        /// <param name="position">Position from the right of <paramref name="value"/>. Start from 0</param>
+        /// <returns></returns>
+        public int GetBit(int value, int position)
+        {
+            return (value >> position) & 1;
+        }
+        public int SetBit(int valToEval, int setValue, int position)
+        {
+            int result = valToEval;
+            var shift = 1 << position;
+
+            if (setValue == 1)
+                result = result | (1 << position); // 1011 | 0100 = 1111
+            else if (setValue == 0)
+                result = result & (1 << position); // 1011 & 1101 = 1001
+            return result;
+        }
+
+
+        [Fact]
+        public void BitWiseOrTest()
+        {
+            int testInt1 = 5;
+            int testInt2 = 3;
+
+            var result = testInt1 | testInt2; // 101 | 011 = 111
+            var result3 = testInt1 & testInt2; // 101 & 011 = 001
+            var result4 = testInt1 ^ testInt2; // 101 ^ 011 = 110
+            var result5 = ~testInt1; // ~101 = 10
+
+
+            return;
+        }
+
         [Fact]
         public void XorTest()
         {
