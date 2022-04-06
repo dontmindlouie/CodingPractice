@@ -9,6 +9,25 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P191HammingWeight(uint n)
+        {
+            // 191. Number of 1 Bits
+            // time O(1) space O(1)
+            int result = 0;
+            uint val;
+            int bitCount = 0;
+            for (int i = 0; i < 32; i++)
+            {
+                val = n & 1; // 1011 & 1 = 1 // 101 & 1 = 1
+                if (val == 1)
+                {
+                    bitCount++;
+                }
+                n >>= 1; // 101
+            }
+            return bitCount;
+        }
+
         public uint P190ReverseBits(uint n)
         {
             // 190. Reverse Bits
