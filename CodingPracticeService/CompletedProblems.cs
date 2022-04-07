@@ -9,6 +9,35 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P202IsHappy(int n)
+        {
+            // 202. Happy Number
+            // time complexity ???? space O(1)
+            // Runtime: 46 ms, faster than 51.57% of C# online submissions for Happy Number.
+            // Memory Usage: 28.3 MB, less than 27.80% of C# online submissions for Happy Number.
+            var slown = n;
+            var fastn = n;
+            do
+            {
+                slown = P202SumOfSquares(slown);
+                fastn = P202SumOfSquares(fastn);
+                fastn = P202SumOfSquares(fastn);
+                if (slown == 1 || fastn == 1) return true;
+            } while (slown != fastn);
+            return false;
+        }
+        public int P202SumOfSquares(int n)
+        {
+            var numAsString = n.ToString();
+            var sum = 0;
+            foreach (char num in numAsString)
+            {
+                var indInt = int.Parse(new char[] { num });
+                sum += (int)Math.Pow(indInt, 2);
+            }
+            return sum;
+        }
+
         public int P191HammingWeight(uint n)
         {
             // 191. Number of 1 Bits

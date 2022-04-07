@@ -7,6 +7,19 @@ namespace CodingPracticeUnitTests
     public class ExperimentTests
     {
         [Fact]
+        public void IntStringConversions()
+        {
+            var testInt1 = 19;
+            var testChar = '5';
+            var intString = testInt1.ToString();
+            var charArray = intString.ToCharArray();
+            Array.Reverse(charArray);
+            var reversed = int.Parse(charArray);
+            var intParse = int.Parse(intString);
+            var singleChar = int.Parse(new char[] { testChar });
+        }
+
+        [Fact]
         public void BitWiseShiftTest()
         {
             int testInt1 = 11;
