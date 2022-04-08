@@ -24,6 +24,16 @@ namespace CodingPracticeUnitTests
         }
 
         [Fact]
+        public void P206ReverseListTest()
+        {
+            var input = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode( 5)))));
+            var expected = new ListNode(5, new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(1)))));
+            var cp = new CompletedProblems();
+            var actual = cp.P206ReverseList(input);
+            AssertListNodeEqual(actual, expected);
+        }
+
+        [Fact]
         public void P190ReverseBits()
         {
 

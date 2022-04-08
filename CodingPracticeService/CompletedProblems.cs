@@ -9,6 +9,28 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public ListNode P206ReverseList(ListNode head)
+        {
+            // 206. Reverse Linked List
+            // time O(head) space O(1)
+            // Runtime: 109 ms, faster than 56.09% of C# online submissions for Reverse Linked List.
+            // Memory Usage: 37.5 MB, less than 97.54 % of C# online submissions for Reverse Linked List.
+            if (head == null) return null;
+            if (head.next == null) return head;
+            var newNode = head;
+            var pivot = head.next;
+            var oldNode = head.next.next;
+            newNode.next = null;
+            while (oldNode != null)
+            {
+                pivot.next = newNode;
+                newNode = pivot;
+                pivot = oldNode;
+                oldNode = oldNode.next;
+            }
+            pivot.next = newNode;
+            return pivot;
+        }
         public ListNode P203RemoveElements(ListNode head, int val)
         {
             // 203. Remove Linked List Elements
