@@ -9,12 +9,42 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public ListNode P203RemoveElements(ListNode head, int val)
+        {
+            // 203. Remove Linked List Elements
+            // time O(n) space O(1)
+            // Runtime: 108 ms, faster than 68.61% of C# online submissions for Remove Linked List Elements.
+            // Memory Usage: 40.3 MB, less than 70.11% of C# online submissions for Remove Linked List Elements.
+
+            if (head == null) return null;
+            while (head.val == val)
+                if (head.next != null) head = head.next;
+                else return null;
+            var node = head;
+            while (node.next != null)
+                if (node.next.val == val)
+                    if (node.next.next == null) node.next = null;
+                    else node.next = node.next.next;
+                else node = node.next;
+            return head;
+        }
         public bool P202IsHappy(int n)
         {
+            Console.WriteLine();
             // 202. Happy Number
             // time complexity ???? space O(1)
+            // Write an algorithm to determine if a number n is happy.
+
+            // A happy number is a number defined by the following process:
+
+            // Starting with any positive integer, replace the number by the sum of the squares of its digits.
+            // Repeat the process until the number equals 1(where it will stay), or it loops endlessly in a cycle which does not include 1.
+            // Those numbers for which this process ends in 1 are happy.
+            // Return true if n is a happy number, and false if not.
+
             // Runtime: 46 ms, faster than 51.57% of C# online submissions for Happy Number.
             // Memory Usage: 28.3 MB, less than 27.80% of C# online submissions for Happy Number.
+
             var slown = n;
             var fastn = n;
             do
