@@ -22,6 +22,16 @@ namespace CodingPracticeUnitTests
             var actual = ""; //cp.ProblemTemplate();
             Assert.Equal(actual, expected);
         }
+        [Fact]
+        public void P219ContainsNearbyDuplicateTest()
+        {
+            var expected = true;
+            var nums = new int[] { 1, 2, 3, 1 };
+            var k = 3;
+            var cp = new CompletedProblems();
+            var actual = cp.P219ContainsNearbyDuplicate( nums, k);
+            Assert.Equal(actual, expected);
+        }
 
         [Fact]
         public void P206ReverseListTest()

@@ -9,6 +9,20 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P219ContainsNearbyDuplicate(int[] nums, int k)
+        {
+            // 219. Contains Duplicate II
+            // time O(n2) space O(1)
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] == nums[j] && (Math.Abs(i - j) <= k)) return true;
+                    if ((Math.Abs(i - j) > k)) break;
+                }
+            }
+            return false;
+        }
         public ListNode P206ReverseList(ListNode head)
         {
             // 206. Reverse Linked List
