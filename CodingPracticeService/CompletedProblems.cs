@@ -9,6 +9,7 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+
         public bool P219ContainsNearbyDuplicate(int[] nums, int k)
         {
             // 219. Contains Duplicate II
@@ -21,6 +22,7 @@ namespace CodingPracticeService
                     if ((Math.Abs(i - j) > k)) break;
                 }
             }
+            
             return false;
         }
         public ListNode P206ReverseList(ListNode head)
