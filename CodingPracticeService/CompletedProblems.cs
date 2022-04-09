@@ -9,6 +9,16 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public TreeNode P226InvertTree(TreeNode root)
+        {
+            // 226. Invert Binary Tree
+            // time O(root) space O(root)
+            if (root == null) return null;
+            var invertNode = new TreeNode(root.val);
+            invertNode.left = P226InvertTree(root.right);
+            invertNode.right = P226InvertTree(root.left);
+            return invertNode;
+        }
 
         public bool P219ContainsNearbyDuplicate(int[] nums, int k)
         {
