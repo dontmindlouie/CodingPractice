@@ -9,6 +9,44 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<string> P228SummaryRanges(int[] nums)
+        {
+            // 228. Summary Ranges
+            // time O(n) space O(n)
+            if (nums.Length == 0) return new List<string>();
+            if (nums.Length == 1) return new List<string>() { $"{nums[0]}" };
+            var numList = new List<string>();
+
+            var begin = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (nums[i - 1] + 1 != nums[i])
+                {
+                    if (nums[i - 1] == begin)
+                    {
+                        numList.Add($"{nums[i - 1]}");
+                    }
+                    else
+                    {
+                        numList.Add($"{begin}->{nums[i - 1]}");
+                    }
+                    begin = nums[i];
+                }
+                if (i == nums.Length - 1)
+                {
+                    if (nums[i] == begin)
+                    {
+                        numList.Add($"{nums[i]}");
+                    }
+                    else
+                    {
+                        numList.Add($"{begin}->{nums[i]}");
+                    }
+                }
+            }
+            return numList;
+        }
+
         public TreeNode P226InvertTree(TreeNode root)
         {
             // 226. Invert Binary Tree
