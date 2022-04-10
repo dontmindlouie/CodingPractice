@@ -34,7 +34,6 @@ G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\Microsoft.Extensions.Opt
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\System.Diagnostics.EventLog.dll
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.EventLog.dll
-G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.csproj.AssemblyReference.cache
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.GeneratedMSBuildEditorConfig.editorconfig
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.AssemblyInfoInputs.cache
 G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.AssemblyInfo.cs

@@ -1,12 +1,21 @@
 using CodingPracticeService;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Xunit;
 
 namespace CodingPracticeUnitTests
 {
     public class ExperimentTests
     {
+
+        [Fact]
+        public void StackTest()
+        {
+            var testStack = new Stack<int>();
+            testStack.Push(1);
+            var stackCount = testStack.Count;
+        }
 
         [Fact]
         public void IntStringConversions()
