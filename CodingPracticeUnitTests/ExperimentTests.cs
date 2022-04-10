@@ -8,7 +8,10 @@ namespace CodingPracticeUnitTests
 {
     public class ExperimentTests
     {
-
+        [Fact]
+        public void ArrayTest()
+        {
+        }
         [Fact]
         public void StackTest()
         {

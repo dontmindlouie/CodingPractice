@@ -23,6 +23,15 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void P234IsPalindromeTest()
+        {
+            var expected = false;
+            var input = new ListNode(1, new ListNode(2, new ListNode(3)));
+            var cp = new CompletedProblems();
+            var actual = cp.P234IsPalindrome(input);
+            Assert.Equal(actual, expected);
+        }
+        [Fact]
         public void P219ContainsNearbyDuplicateTest()
         {
             var expected = true;

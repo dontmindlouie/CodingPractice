@@ -9,7 +9,47 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P234IsPalindromeV2(ListNode head)
+        {
+            // 234.Palindrome Linked List
+            // time O(n) space(n)
+            var palList = new List<int>();
+            while (head != null)
+            {
+                palList.Add(head.val);
+                head = head.next;
+            }
+            for(int i = 0; i < palList.Count/2; i++)
+            {
+                if (palList[i] != palList[palList.Count - i]) return false;
+            }
 
+            return true;
+        }
+        public bool P234IsPalindromeV1(ListNode head)
+        {
+            // 234.Palindrome Linked List
+            // time O(n) space(n)
+            var palList = new List<int>();
+            while (head != null)
+            {
+                palList.Add(head.val);
+                head = head.next;
+            }
+            var reverse = new List<int>();
+            var palArray = palList.ToArray();
+            foreach(var a in palList)
+            {
+                reverse.Add(a);
+            }
+            var revArray = reverse.ToArray();
+            Array.Reverse(revArray);
+            for(int i = 0; i< revArray.Count(); i++)
+            {
+                if (revArray[i] != palArray[i]) return false;
+            }
+            return true;
+        }
         public bool P231IsPowerOfTwo(int n)
         {
             // 231. Power of Two
