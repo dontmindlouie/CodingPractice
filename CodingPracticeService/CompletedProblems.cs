@@ -9,6 +9,22 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+
+        public bool P231IsPowerOfTwo(int n)
+        {
+            // 231. Power of Two
+            // time O(1) space O(1)
+            var oneCount = 0;
+            if (n < 0) return false;
+            for (int i = 0; i < 31; i++)
+            {
+                if ((n & 1) == 1) oneCount++;
+                n = n >> 1;
+            }
+            if (oneCount == 1) return true;
+            return false;
+        }
+
         public IList<string> P228SummaryRanges(int[] nums)
         {
             // 228. Summary Ranges

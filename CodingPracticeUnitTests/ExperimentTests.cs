@@ -28,6 +28,10 @@ namespace CodingPracticeUnitTests
             var testBit1 = Convert.ToString(testInt1,2); // 1011
             int testInt2 = 9;
             var testBit2 = Convert.ToString(testInt2, 2); // 1001
+            var testInt3 = -2147483648;
+            var testBit3 = Convert.ToString(testInt3, 2);
+
+            var asdf = "10000000000000000000000000000000".ToCharArray().Length;
 
             var result1 = testInt1 << 1;
             var result2 = testInt1 >> 1;
