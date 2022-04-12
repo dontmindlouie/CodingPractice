@@ -9,6 +9,17 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public TreeNode P235LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+        {
+            // 235. Lowest Common Ancestor of a Binary Search Tree
+            // time O(logn) space O(1)
+            if (root.val > p.val && root.val > q.val)
+                return P235LowestCommonAncestor(root.left, p, q);
+            if (root.val < p.val && root.val < q.val)
+                return P235LowestCommonAncestor(root.right, p, q);
+            return root;
+        }
+
         public bool P234IsPalindromeV2(ListNode head)
         {
             // 234.Palindrome Linked List

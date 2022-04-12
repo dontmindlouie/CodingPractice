@@ -28,7 +28,7 @@ namespace CodingPracticeUnitTests
             var expected = false;
             var input = new ListNode(1, new ListNode(2, new ListNode(3)));
             var cp = new CompletedProblems();
-            var actual = cp.P234IsPalindrome(input);
+            var actual = cp.P234IsPalindromeV2(input);
             Assert.Equal(actual, expected);
         }
         [Fact]
