@@ -9,6 +9,13 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public void P237DeleteNode(ListNode node)
+        {
+            // 237. Delete Node in a Linked List
+            node.val = node.next.val;
+            node.next = node.next.next;
+        }
+
         public TreeNode P235LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
         {
             // 235. Lowest Common Ancestor of a Binary Search Tree
