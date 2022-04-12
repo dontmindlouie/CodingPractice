@@ -9,6 +9,22 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P258AddDigits(int num)
+        {
+            // 258. Add Digits
+            // time O(1)? space O(1)
+            var numString = num.ToString();
+            var sum = 0;
+            for (int i = 0; i < numString.Length; i++)
+            {
+                sum += int.Parse(numString[i].ToString());
+            }
+            if (sum.ToString().Length == 1)
+            {
+                return sum;
+            }
+            return P258AddDigits(sum);
+        }
         public void P237DeleteNode(ListNode node)
         {
             // 237. Delete Node in a Linked List
