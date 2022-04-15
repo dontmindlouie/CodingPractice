@@ -9,8 +9,118 @@ namespace CodingPracticeUnitTests
     public class ExperimentTests
     {
         [Fact]
+        public int[] TopDownMergeSort()
+        {
+            var nums = new int[] { 4, 3, 2, 5, 7, 7, 1 };
+
+            TopDownMergeSort_Split(nums, 0, nums.Length - 1);
+
+            Assert.Equal(nums, new int[] { 1, 2, 3, 4, 5, 7, 7 });
+            return nums;
+        }
+
+        private void TopDownMergeSort_Split(int[] nums, int begini, int endi)
+        {
+            if (endi - begini <= 0) return;
+            var midi = (begini + endi) / 2;
+            TopDownMergeSort_Split(nums, begini, midi);
+            TopDownMergeSort_Split(nums, midi + 1, endi);
+            TopDownMergeSort_Merge(nums, begini, midi, endi);
+        }
+
+        private void TopDownMergeSort_Merge(int[] nums, int begini, int midi, int endi)
+        {
+            int lenA = midi - begini + 1;
+            int lenB = endi - midi;
+
+            var numsA = new int[lenA];
+            var numsB = new int[lenB];
+
+            Array.Copy(nums, begini, numsA, 0, lenA);
+            Array.Copy(nums, midi + 1, numsB, 0, lenB);
+
+            int ai = 0, bi = 0;
+            int len = begini;
+            while (ai < lenA && bi < lenB)
+            {
+                if (numsA[ai] < numsB[bi])
+                {
+                    nums[len] = numsA[ai];
+                    ai++;
+                }
+                else
+                {
+                    nums[len] = numsB[bi];
+                    bi++;
+                }
+                len++;
+            }
+            while (ai < lenA)
+            {
+                nums[len] = numsA[ai];
+                ai++;
+                len++;
+            }
+            while(bi < lenB)
+            {
+                nums[len] = numsB[bi];
+                bi++;
+                len++;
+            }
+        }
+
+        [Fact]
+        public int[] MergeSort()
+        {
+            var nums = new int[] { 4, 3, 2, 5, 7, 1 };
+            // 524321 // pick rand nums[3] = 2
+            // 124325 // swap nums[0] and nums[len-1 = 5]
+            // 124325 // num[1] = 2, num[2] = 4 and nums[len-2 = 4] = 2
+            // 122345 // half 5/2 = 2, Rand.next(0,3)
+
+            var rng = new Random();
+            var begini = 0;
+            var endi = nums.Length - 1;
+            Sort(begini, endi, nums);
+            return nums;
+        }
+        void Sort(int begini, int endi, int[] nums)
+        {
+            // 4,3,2,5,7,1
+            //if (begini == endi) return;
+            var pivot = new Random().Next(begini, endi);
+            while (begini < endi)
+            {
+                if (nums[begini] > nums[pivot])
+                {
+                    if (nums[endi] < nums[pivot])
+                    {
+                        Swap(begini, endi, nums);
+                    }
+                    else endi--;
+                }
+                else begini++;
+            }
+            Sort(begini, (begini + endi) / 2, nums);
+            Sort(((begini + endi) / 2) + 1, endi, nums);
+        }
+
+        void Swap(int begini, int endi, int[] nums)
+        {
+            var temp = nums[begini];
+            nums[begini] = nums[endi];
+            nums[endi] = temp;
+        }
+
+        [Fact]
         public void ArrayTest()
         {
+            var rng = new Random();
+            var rngint = rng.Next(0, 4);
+            var test1 = 17 % 2;
+            var test2 = 17 % 3;
+            var test3 = 17 % 4;
+            var test4 = 17 % 5;
         }
         [Fact]
         public void StackTest()
@@ -37,7 +147,7 @@ namespace CodingPracticeUnitTests
         public void BitWiseShiftTest()
         {
             int testInt1 = 11;
-            var testBit1 = Convert.ToString(testInt1,2); // 1011
+            var testBit1 = Convert.ToString(testInt1, 2); // 1011
             int testInt2 = 9;
             var testBit2 = Convert.ToString(testInt2, 2); // 1001
             var testInt3 = -2147483648;

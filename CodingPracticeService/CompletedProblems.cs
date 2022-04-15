@@ -55,7 +55,7 @@ namespace CodingPracticeService
             }
             for(int i = 0; i < palList.Count/2; i++)
             {
-                if (palList[i] != palList[palList.Count - i]) return false;
+                if (palList[i] != palList[palList.Count - 1 - i]) return false;
             }
 
             return true;
@@ -350,17 +350,6 @@ namespace CodingPracticeService
 
             return result;
         }
-
-            //  A   A
-            // AA   AA
-            // AB   BA
-            // AZ   ZA
-            // BA   AB
-            // BB
-            // ZZ
-            //AAA
-            //AAB
-
 
         public ListNode P160GetIntersectionNode(ListNode headA, ListNode headB)
         {
