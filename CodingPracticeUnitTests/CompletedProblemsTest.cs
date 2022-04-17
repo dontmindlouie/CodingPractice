@@ -23,6 +23,15 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void P278FirstBadVersion()
+        {
+            var input = 2126753390;
+            var expected = 1702766719;
+            var cp = new CompletedProblems();
+            var actual = cp.P278FirstBadVersion(input);
+            Assert.Equal(actual, expected);
+        }
+        [Fact]
         public void P234IsPalindromeTest()
         {
             var expected = false;

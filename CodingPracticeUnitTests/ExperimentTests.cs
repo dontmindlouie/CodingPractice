@@ -138,9 +138,18 @@ namespace CodingPracticeUnitTests
                 ni++;
             }
         }
-
         [Fact]
         public void ArrayTest()
+        {
+            var rng = new Random();
+            var arrayTest = new int[] { 3, 6, 2, 5, 7 };
+            var rngint = rng.Next(0, 4);
+
+            Array.Sort(arrayTest);
+
+        }
+        [Fact]
+        public void ModTest()
         {
             var rng = new Random();
             var rngint = rng.Next(0, 4);
@@ -148,6 +157,7 @@ namespace CodingPracticeUnitTests
             var test2 = 17 % 3;
             var test3 = 17 % 4;
             var test4 = 17 % 5;
+
         }
         [Fact]
         public void StackTest()

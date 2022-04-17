@@ -9,6 +9,45 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P278FirstBadVersion(int n)
+        {
+            // 278. First Bad Version
+            // time O(logn)
+            int min = 0;
+            return P278SearchBadVersion(min, n);
+        }
+        public bool P278IsBadVersion(int n)
+        {
+            if (n < 1702766719) return false;
+            return true;
+        }
+        public int P278SearchBadVersion(int min, int n)
+        {
+            if (min == n) return n;
+            int first;
+            int mid = min + ((n-min) / 2);
+            if (P278IsBadVersion(mid))
+            {
+                first = P278SearchBadVersion(min, mid);
+            }
+            else
+            {
+                first = P278SearchBadVersion(mid + 1, n);
+            }
+            return first;
+        }
+        public int P268MissingNumber(int[] nums)
+        {
+            //268.Missing Number
+            // time O(n) space O(1)
+            Array.Sort(nums);
+            if (nums[0] != 0) return 0;
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] + 1 != nums[i + 1]) return i + 1;
+            }
+            return nums[nums.Length - 1] + 1;
+        }
         public int P258AddDigits(int num)
         {
             // 258. Add Digits
@@ -24,6 +63,7 @@ namespace CodingPracticeService
                 return sum;
             }
             return P258AddDigits(sum);
+
         }
         public void P237DeleteNode(ListNode node)
         {
