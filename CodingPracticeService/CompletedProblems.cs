@@ -9,6 +9,29 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int[] P338CountBits(int n)
+        {
+            // 338. Counting Bits
+            // time O(n2) space O(n)
+            int count = 0;
+            int ni = n;
+            var resultTemp = new List<int>();
+            while (ni >= 0)
+            {
+                for (int i = 0; i < 32; i++)
+                {
+                    if ((ni & 1) == 1) count++;
+                    ni = ni >> 1;
+                }
+                resultTemp.Add(count);
+                count = 0;
+                n--;
+                ni = n;
+            }
+            var result = resultTemp.ToArray();
+            Array.Reverse(result);
+            return result;
+        }
         public bool P342IsPowerOfFour(int n)
         {
             // 342. Power of Four
