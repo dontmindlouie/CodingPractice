@@ -61,7 +61,7 @@ namespace CodingPracticeUnitTests
                 ai++;
                 len++;
             }
-            while(bi < lenB)
+            while (bi < lenB)
             {
                 nums[len] = numsB[bi];
                 bi++;
@@ -70,46 +70,73 @@ namespace CodingPracticeUnitTests
         }
 
         [Fact]
-        public int[] MergeSort()
+        public int[] BottomUpMergeSort()
         {
-            var nums = new int[] { 4, 3, 2, 5, 7, 1 };
-            // 524321 // pick rand nums[3] = 2
-            // 124325 // swap nums[0] and nums[len-1 = 5]
-            // 124325 // num[1] = 2, num[2] = 4 and nums[len-2 = 4] = 2
-            // 122345 // half 5/2 = 2, Rand.next(0,3)
-
-            var rng = new Random();
+            var nums = new int[] { 4, 2, 5, 7, 7, 1, 9 };
             var begini = 0;
-            var endi = nums.Length - 1;
-            Sort(begini, endi, nums);
+            var sizeOfHalves = 1;
+            while (sizeOfHalves <= nums.Length) 
+            {
+                while (begini <= nums.Length)
+                {
+                    BottomUpMergeSort_Merge(begini, sizeOfHalves, nums);
+                    begini += 2 * sizeOfHalves;
+                }
+                sizeOfHalves *= 2;
+                begini = 0;
+            }
+            Assert.Equal(nums, new int[] { 1, 2, 4, 5, 7, 7, 9 });
             return nums;
         }
-        void Sort(int begini, int endi, int[] nums)
+        void BottomUpMergeSort_Merge(int begini, int sizeOfHalves, int[] nums)
         {
             // 4,3,2,5,7,1
-            //if (begini == endi) return;
-            var pivot = new Random().Next(begini, endi);
-            while (begini < endi)
-            {
-                if (nums[begini] > nums[pivot])
-                {
-                    if (nums[endi] < nums[pivot])
-                    {
-                        Swap(begini, endi, nums);
-                    }
-                    else endi--;
-                }
-                else begini++;
-            }
-            Sort(begini, (begini + endi) / 2, nums);
-            Sort(((begini + endi) / 2) + 1, endi, nums);
-        }
+            var halfA = new List<int>();
+            var halfB = new List<int>();
 
-        void Swap(int begini, int endi, int[] nums)
-        {
-            var temp = nums[begini];
-            nums[begini] = nums[endi];
-            nums[endi] = temp;
+            int ai = 0; int bi = 0; int ni = begini;
+
+            while (ai < sizeOfHalves & ni < nums.Length)
+            {
+                halfA.Add(nums[ni]);
+                ai++;
+                ni++;
+            }
+            while (bi < sizeOfHalves & ni < nums.Length)
+            {
+                halfB.Add(nums[ni]);
+                bi++;
+                ni++;
+            }
+
+            ai = 0; bi = 0; ni = begini;
+
+            while (ai < halfA.Count && bi < halfB.Count)
+            {
+                if (halfA[ai] < halfB[bi])
+                {
+                    nums[ni] = halfA[ai];
+                    ai++;
+                }
+                else
+                {
+                    nums[ni] = halfB[bi];
+                    bi++;
+                }
+                ni++;
+            }
+            while (ai < halfA.Count)
+            {
+                nums[ni] = halfA[ai];
+                ai++;
+                ni++;
+            }
+            while (bi < halfB.Count)
+            {
+                nums[ni] = halfB[bi];
+                bi++;
+                ni++;
+            }
         }
 
         [Fact]
