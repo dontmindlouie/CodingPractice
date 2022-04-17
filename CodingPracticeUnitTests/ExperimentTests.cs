@@ -144,7 +144,8 @@ namespace CodingPracticeUnitTests
             var rng = new Random();
             var arrayTest = new int[] { 3, 6, 2, 5, 7 };
             var rngint = rng.Next(0, 4);
-
+            var asdf = 45 / 3;
+            var threepow = Math.Pow(3, 5);
             Array.Sort(arrayTest);
 
         }

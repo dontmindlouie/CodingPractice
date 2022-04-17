@@ -9,6 +9,19 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P326IsPowerOfThree(int n)
+        {
+            // 326. Power of Three
+            // time O(3root n)?
+
+            while (n > 1)
+            {
+                if (n % 3 != 0) return false;
+                n /= 3;
+            }
+            if (n == 1) return true;
+            return false;
+        }
         public void P283MoveZeroes(int[] nums)
         {
             /// 283. Move Zeroes
