@@ -147,7 +147,6 @@ namespace CodingPracticeUnitTests
             var asdf = 45 / 3;
             var threepow = Math.Pow(3, 5);
             Array.Sort(arrayTest);
-            Array.Reverse()
         }
         [Fact]
         public void ModTest()

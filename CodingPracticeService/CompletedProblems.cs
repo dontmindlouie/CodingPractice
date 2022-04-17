@@ -9,6 +9,44 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P367IsPerfectSquare(int num)
+        {
+            // 367. Valid Perfect Square
+            // time O(logn) space O(1)
+            //16
+            //8 -> 8*8= 64;
+            //4 -> 4*4 = 16;
+
+            //14
+            //7 -> 7*7 = 49
+            //3 -> 3*3 = 9
+            // (7+3+1)/2 -> 5*5 = 25
+            // (5+3)/2 -> 4*4 = 16
+            // (4-3)/2 -> 3 mid = 3 lower
+
+
+            if (num == 1) return true;
+            var lower = 0;
+            var upper = num;
+            return P367IsSquare(lower, upper, num);
+        }
+        bool P367IsSquare(int lower, int upper, int num)
+        {
+            var mid = lower + ((upper - lower) / 2);
+            if ((mid == (num / mid)) && num % mid == 0) return true;
+            if (mid == lower || mid == upper) return false;
+            if ((mid) < (num / mid))
+            {
+                //go higher
+                return P367IsSquare(mid + 1, upper, num);
+            }
+            else
+            {
+                //go lower
+                return P367IsSquare(lower, mid, num);
+            }
+            return false;
+        }
         public int[] P338CountBits(int n)
         {
             // 338. Counting Bits
@@ -137,7 +175,6 @@ namespace CodingPracticeService
             node.val = node.next.val;
             node.next = node.next.next;
         }
-
         public TreeNode P235LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
         {
             // 235. Lowest Common Ancestor of a Binary Search Tree
@@ -148,7 +185,6 @@ namespace CodingPracticeService
                 return P235LowestCommonAncestor(root.right, p, q);
             return root;
         }
-
         public bool P234IsPalindromeV2(ListNode head)
         {
             // 234.Palindrome Linked List
@@ -204,7 +240,6 @@ namespace CodingPracticeService
             if (oneCount == 1) return true;
             return false;
         }
-
         public IList<string> P228SummaryRanges(int[] nums)
         {
             // 228. Summary Ranges
@@ -242,7 +277,6 @@ namespace CodingPracticeService
             }
             return numList;
         }
-
         public TreeNode P226InvertTree(TreeNode root)
         {
             // 226. Invert Binary Tree
@@ -253,7 +287,6 @@ namespace CodingPracticeService
             invertNode.right = P226InvertTree(root.left);
             return invertNode;
         }
-
         public bool P219ContainsNearbyDuplicate(int[] nums, int k)
         {
             // 219. Contains Duplicate II
@@ -349,7 +382,6 @@ namespace CodingPracticeService
             }
             return sum;
         }
-
         public int P191HammingWeight(uint n)
         {
             // 191. Number of 1 Bits
@@ -368,7 +400,6 @@ namespace CodingPracticeService
             }
             return bitCount;
         }
-
         public uint P190ReverseBits(uint n)
         {
             // 190. Reverse Bits
@@ -388,7 +419,6 @@ namespace CodingPracticeService
             }
             return result;
         }
-
         public int P171TitleToNumber(string columnTitle)
         {
             // 171. Excel Sheet Column Number
@@ -432,7 +462,6 @@ namespace CodingPracticeService
             }
             return 0;
         }
-
         public string P168ConvertToTitle(int columnNumber)
         {
             // 168. Excel Sheet Column Title
@@ -456,7 +485,6 @@ namespace CodingPracticeService
 
             return result;
         }
-
         public ListNode P160GetIntersectionNode(ListNode headA, ListNode headB)
         {
             // 160.Intersection of Two Linked Lists
@@ -494,7 +522,6 @@ namespace CodingPracticeService
             }
             return null;
         }
-
         public IList<int> P145PostorderTraversal(TreeNode root)
         {
             // 145. Binary Tree Postorder Traversal
@@ -507,7 +534,6 @@ namespace CodingPracticeService
             P145Traverse(root, valList);
             return valList;
         }
-
         public void P145Traverse(TreeNode node, IList<int> valList)
         {
             if (node == null) return;
@@ -559,7 +585,6 @@ namespace CodingPracticeService
             }
             return tri;
         }
-
         public bool P141HasCycle(ListNode head)
         {
             // 141. Linked List Cycle
@@ -581,7 +606,6 @@ namespace CodingPracticeService
             if (slow == fast) return true;
             return P141Traverse(slow.next, fast.next.next);
         }
-
         public int P136SingleNumber(int[] nums)
         {
             // 136. Single Number
@@ -616,7 +640,6 @@ namespace CodingPracticeService
             if (P112Traverse(node.right, targetSum, currSum) == true) return true;
             return false;
         }
-
         public int P111MinDepth(TreeNode root)
         {
             // 111.Minimum Depth of Binary Tree
@@ -625,24 +648,23 @@ namespace CodingPracticeService
             // Memory Usage: 55.7 MB, less than 82.30 % of C# online submissions for Minimum Depth of Binary Tree.
 
             if (root == null) return 0;
-            min = -1;
+            P111min = -1;
             P111Traverse(root, 0);
-            return min;
+            return P111min;
         }
-        public static int min;
+        public static int P111min;
         public void P111Traverse(TreeNode node, int height)
         {
             if (node == null) return;
             height++;
             if (node.left == null && node.right == null)
             {
-                if (min > height || min == -1) min = height;
+                if (P111min > height || P111min == -1) P111min = height;
             }
             P111Traverse(node.left, height);
             P111Traverse(node.right, height);
             return;
         }
-
         public bool P110IsBalanced(TreeNode root)
         {
             if (root == null) return true;
@@ -652,7 +674,6 @@ namespace CodingPracticeService
             return result;
 
         }
-
         public bool P110Traverse(TreeNode node, HashSet<int> heightSet, int currHeight)
         {
             currHeight++;
@@ -719,7 +740,6 @@ namespace CodingPracticeService
 
             return head;
         }
-
         public int P104MaxDepth(TreeNode root)
         {
             // 104.Maximum Depth of Binary Tree
@@ -741,7 +761,6 @@ namespace CodingPracticeService
             if (node.right != null)
                 P104CalcDepth(node.right, tempDepth);
         }
-
         public bool P101IsSymmetric(TreeNode root)
         {
             // LeetCode 101. Symmetric Tree
@@ -772,7 +791,6 @@ namespace CodingPracticeService
             return isSym;
 
         }
-
         public bool P100IsSameTree(TreeNode p, TreeNode q)
         {
             // 100. Same Tree
@@ -798,7 +816,6 @@ namespace CodingPracticeService
                 result = P100Traverse(p.right, q.right, result);
             return result;
         }
-
         public IList<int> P94InorderTraversal(TreeNode root)
         {
             // 94. Binary Tree Inorder Traversal
@@ -810,7 +827,6 @@ namespace CodingPracticeService
                 P94Traverse(root, order);
             return order;
         }
-
         public IList<int> P94Traverse(TreeNode node, IList<int> order)
         {
             if (node.left != null) P94Traverse(node.left, order);
@@ -818,7 +834,6 @@ namespace CodingPracticeService
             if (node.right != null) P94Traverse(node.right, order);
             return order;
         }
-
         public ListNode P83DeleteDuplicates(ListNode head)
         {
             // 83. Remove Duplicates from Sorted List
@@ -861,7 +876,6 @@ namespace CodingPracticeService
             }
             return head;
         }
-
         public int P70ClimbStairs(int n)
         {
             // 70. Climbing Stairs
@@ -881,7 +895,6 @@ namespace CodingPracticeService
 
             return current;
         }
-
         public string P67AddBinary(string a, string b)
         {
             // LeetCode 67. Add Binary
@@ -931,7 +944,6 @@ namespace CodingPracticeService
 
             return result.ToString();
         }
-
         public int[] LC66PlusOne(int[] digits)
         {
             // LeetCode 66.Plus One
@@ -965,7 +977,6 @@ namespace CodingPracticeService
 
             return digits;
         }
-
         private ListNode LCP21MergeTwoLists(ListNode list1, ListNode list2)
         {
             var sortedList = new ListNode();
@@ -1030,7 +1041,6 @@ namespace CodingPracticeService
                 }
             }
         }
-
         private ListNode LCP21MergeTwoListv2(ListNode list1, ListNode list2)
         {
             var sortedList = new ListNode();
@@ -1084,7 +1094,6 @@ namespace CodingPracticeService
                 this.next = next;
             }
         }
-
         private int P26RemoveDuplicateFromArray(int[] nums)
         {
             if (nums.Length == 0) return 0;
@@ -1105,7 +1114,6 @@ namespace CodingPracticeService
             }
             return i + 1;
         }
-
         private int P27RemoveElement(int[] nums, int val)
         {
             int validi = 0;
@@ -1139,7 +1147,6 @@ namespace CodingPracticeService
             }
             return i;
         }
-
         private bool P217ContainsDuplicate(int[] nums)
         {
             if (nums.Length == 0) return false;
@@ -1153,7 +1160,6 @@ namespace CodingPracticeService
             }
             return false;
         }
-
         private int P53MaxSubArray(int[] nums)
         {
             // brute force
@@ -1180,7 +1186,6 @@ namespace CodingPracticeService
             }
             return localSum;
         }
-
         private int P53MaxSubArrayV2(int[] nums)
         {
             // O(n)
@@ -1443,7 +1448,6 @@ namespace CodingPracticeService
 
             return lastIterator;
         }
-
         private int RandomSomthing3(int[] N)
         {
             // 256
@@ -1470,7 +1474,6 @@ namespace CodingPracticeService
 
             return Int32.Parse(aString);
         }
-
         public TreeNode P108AddNode(TreeNode travNode, int num)
         {
             if (num > travNode.val)
@@ -1494,7 +1497,6 @@ namespace CodingPracticeService
             Console.WriteLine($"something's wrong: travValue: {travNode.val}, num: {num}");
             return travNode;
         }
-
         private IList<string> LC257BinaryTreePaths(TreeNode root)
         {
             // LeetCode Problem 257 Binary Tree Paths
@@ -1505,7 +1507,6 @@ namespace CodingPracticeService
 
             return resultList;
         }
-
         private void LCP257BuildTree(TreeNode node, List<string> resultList, Stack<int> tempStack)
         {
             tempStack.Push(node.val);
@@ -1524,7 +1525,6 @@ namespace CodingPracticeService
                 LCP257BuildTree(node.right, resultList, tempStack);
             tempStack.Pop();
         }
-
         private bool LCP290WordPattern(string pattern, string s)
         {
             //LeetCode Problem 290 Word Pattern
@@ -1572,8 +1572,6 @@ namespace CodingPracticeService
             if (wordMap.Count != pattern.Length) return false;
             return true;
         }
-
-
         public bool LC383RansomNote(string ransomNote, string magazine)
         {
             // LeetCode Practice RansomNote
@@ -1607,7 +1605,6 @@ namespace CodingPracticeService
 
             return true;
         }
-
         private int LC387FirstUniqChar(string s)
         {
             // LeetCode First Unique Char In a String
@@ -1626,7 +1623,6 @@ namespace CodingPracticeService
 
             return -1;
         }
-
         private int LC389FindTheDifference(string s, string t)
         {
             // LC389FindTheDifference
@@ -1703,7 +1699,6 @@ namespace CodingPracticeService
             double result = (sum - min - max) / (salary.Length - 2);
             return result;
         }
-
         private bool LC392IsSubsequence(string s, string t)
         {
             // LeetCode 392 Is Subsequence
@@ -1721,7 +1716,6 @@ namespace CodingPracticeService
             if (subi == s.Length) return true;
             else return false;
         }
-
         private int LCP121MaxProfit(int[] prices)
         {
             // LeetCode 121 Best Time to Buy and Sell Stock
@@ -1770,7 +1764,6 @@ namespace CodingPracticeService
             if (middle == true) count++;
             return count;
         }
-
         public class TreeNode
         {
             public int val;

@@ -23,6 +23,17 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void P367IsPerfectSquareTest()
+        {
+            //var input = 808201;
+            var input = 5;
+            //var expected = true;
+            var expected = false;
+            var cp = new CompletedProblems();
+            var actual = cp.P367IsPerfectSquare(input);
+            Assert.Equal(actual, expected);
+        }
+        [Fact]
         public void P278FirstBadVersion()
         {
             var input = 2126753390;
