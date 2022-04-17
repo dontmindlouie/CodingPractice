@@ -9,6 +9,38 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P374GuessNumber(int n)
+        {
+            // 374. Guess Number Higher or Lower
+            // time O(logn) space O(1);
+            var lower = 0;
+            var upper = n;
+            return P374GuessNumber(lower, upper, n);
+        }
+        int P374GuessNumber(int lower, int upper, int n)
+        {
+            int mid = lower + ((upper - lower) / 2);
+            var guessNum = P374Guess(mid);
+            if (guessNum == 0) return mid;
+            if (guessNum == 1)
+            {
+                // -1 go higher
+                return P374GuessNumber(mid + 1, upper, n);
+            }
+            else
+            {
+                // go lower
+                return P374GuessNumber(lower, mid, n);
+            }
+        }
+        int P374Guess(int num)
+        {
+            var guess = 6;
+            if (num < guess) return -1;
+            if (num > guess) return 1;
+            else return 0;
+        }
+
         public bool P367IsPerfectSquare(int num)
         {
             // 367. Valid Perfect Square
