@@ -9,6 +9,17 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P342IsPowerOfFour(int n)
+        {
+            // 342. Power of Four
+            if (n <= 0) return false;
+            while (n > 1)
+            {
+                if (n % 4 != 0) return false;
+                n /= 4;
+            }
+            return true;
+        }
         public bool P326IsPowerOfThree(int n)
         {
             // 326. Power of Three
