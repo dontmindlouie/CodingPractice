@@ -9,6 +9,25 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public void P283MoveZeroes(int[] nums)
+        {
+            /// 283. Move Zeroes
+            /// time O(n2) space O(1)
+            for (int i = nums.Length - 1; i >= 0; i--)
+            {
+                if (nums[i] == 0)
+                {
+                    var j = i;
+                    while (j < nums.Length - 1)
+                    {
+                        var temp = nums[j + 1];
+                        nums[j + 1] = nums[j];
+                        nums[j] = temp;
+                        j++;
+                    }
+                }
+            }
+        }
         public int P278FirstBadVersion(int n)
         {
             // 278. First Bad Version
@@ -25,7 +44,7 @@ namespace CodingPracticeService
         {
             if (min == n) return n;
             int first;
-            int mid = min + ((n-min) / 2);
+            int mid = min + ((n - min) / 2);
             if (P278IsBadVersion(mid))
             {
                 first = P278SearchBadVersion(min, mid);
@@ -93,7 +112,7 @@ namespace CodingPracticeService
                 palList.Add(head.val);
                 head = head.next;
             }
-            for(int i = 0; i < palList.Count/2; i++)
+            for (int i = 0; i < palList.Count / 2; i++)
             {
                 if (palList[i] != palList[palList.Count - 1 - i]) return false;
             }
@@ -112,13 +131,13 @@ namespace CodingPracticeService
             }
             var reverse = new List<int>();
             var palArray = palList.ToArray();
-            foreach(var a in palList)
+            foreach (var a in palList)
             {
                 reverse.Add(a);
             }
             var revArray = reverse.ToArray();
             Array.Reverse(revArray);
-            for(int i = 0; i< revArray.Count(); i++)
+            for (int i = 0; i < revArray.Count(); i++)
             {
                 if (revArray[i] != palArray[i]) return false;
             }
@@ -200,7 +219,7 @@ namespace CodingPracticeService
                     if ((Math.Abs(i - j) > k)) break;
                 }
             }
-            
+
             return false;
         }
         public ListNode P206ReverseList(ListNode head)
@@ -330,7 +349,7 @@ namespace CodingPracticeService
             // base 26 to base 10
             // Runtime: 113 ms, faster than 15.11% of C# online submissions for Excel Sheet Column Number.
             // Memory Usage: 37 MB, less than 30.86 % of C# online submissions for Excel Sheet Column Number.
-            
+
             var abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             double result = 0;
 
@@ -375,7 +394,7 @@ namespace CodingPracticeService
             // Memory Usage: 37.1 MB, less than 6.27 % of C# online submissions for Excel Sheet Column Title.
             string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string result = "";
-            
+
             while (columnNumber > 0)
             {
                 var remain = columnNumber % 26;
