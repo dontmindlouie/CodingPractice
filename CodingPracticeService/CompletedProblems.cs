@@ -9,6 +9,67 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<string> P401ReadBinaryWatch(int turnedOn)
+        {
+            // 401. Binary Watch
+            var minute = new int[] { 1, 2, 4, 8, 16, 32 };
+            var hour = new int[] { 1, 2, 4, 8 };
+            var totalLength = minute.Length + hour.Length;
+            var result = new List<string>();
+
+            P401IterateWatch(turnedOn, new int[] { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 }, result, 0, end: totalLength, index: 0);
+
+            return (IList<string>)result;
+        }
+        public void P401IterateWatch(int turnedOn, int[] tempCombo, IList<string> result, int start, int end, int index)
+        {
+            //TODO remove
+
+            index = 1;
+            if (index == turnedOn)
+            {
+                var minute = 0;
+                var hour = 0;
+                (minute, hour) = P401FindMinuteHour(tempCombo);
+                Console.WriteLine($"minute {minute}, hour {hour}");
+            }
+        }
+        public (int, int) P401FindMinuteHour(int[] tempCombo)
+        {
+            int minute = 0;
+            int hour = 0;
+            Console.WriteLine($"tempCombo {tempCombo[0]}");
+            for (int i = 1; i < 10; i++)
+            {
+                if (tempCombo[i] == 1)
+                {
+                    if (i < 6)
+                    {
+                        if (minute == 0) minute = 1;
+                        else minute = (minute << 1) | 1;
+                    }
+                    else
+                    {
+                        if (hour == 0) hour = 1;
+                        else hour = (hour << 1) | 1;
+                    }
+                }
+                else
+                {
+                    if (i < 6)
+                    {
+                        if (minute == 0) minute = 0;
+                        else minute = (minute << 1);
+                    }
+                    else
+                    {
+                        if (hour == 0) hour = 0;
+                        else hour = (hour << 1);
+                    }
+                }
+            }
+            return (minute, hour);
+        }
         public int P374GuessNumber(int n)
         {
             // 374. Guess Number Higher or Lower

@@ -8,6 +8,53 @@ namespace CodingPracticeUnitTests
 {
     public class ExperimentTests
     {
+        static void combinationUtil(int[] arr, int[] data,
+                             int start, int end,
+                             int index, int r)
+        {
+            if (index == r)
+            {
+                var comboList = new List<int>();
+                for (int j = 0; j < r; j++)
+                {
+                    comboList.Add(data[j]);
+                }
+                Combos.Add(comboList);
+                return;
+            }
+
+            // replace index with all
+            // possible elements. The
+            // condition "end-i+1 >=
+            // r-index" makes sure that
+            // including one element
+            // at index will make a
+            // combination with remaining
+            // elements at remaining positions
+            for (int i = start; i <= end 
+                //&& end - i + 1 >= r - index
+                      ; i++)
+            {
+                data[index] = arr[i];
+                combinationUtil(arr, data, start: i + 1,
+                                end: end, index: index + 1, r);
+            }
+        }
+        [Fact]
+        public IList<IList<int>> FindAllCombinations()
+        {
+            var result = new List<List<int>>();
+            var input = new int[] { 3,2,3,2,3 };
+            var temp = new int[input.Length];
+            var comboSize = 3;
+
+            combinationUtil(arr: input, data: temp, start: 0, end: input.Length - 1, index: 0, comboSize);
+
+
+            return (IList<IList<int>>)Combos;
+        }
+        public static List<List<int>> Combos = new List<List<int>>();
+
         [Fact]
         public int[] TopDownMergeSort()
         {
