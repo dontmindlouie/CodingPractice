@@ -23,6 +23,17 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void P401ReadBinaryWatchTest()
+        {
+            //var input = 808201;
+            var input = 3;
+            //var expected = true;
+            var expected = new List<int>() ;
+            var cp = new CompletedProblems();
+            var actual = cp.P401ReadBinaryWatch(input);
+            Assert.Equal((List<int>)actual, expected);
+        }
+        [Fact]
         public void P367IsPerfectSquareTest()
         {
             //var input = 808201;

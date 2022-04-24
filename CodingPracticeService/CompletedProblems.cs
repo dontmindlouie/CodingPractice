@@ -25,21 +25,28 @@ namespace CodingPracticeService
         {
             //TODO remove
 
-            index = 1;
             if (index == turnedOn)
             {
-                var minute = 0;
-                var hour = 0;
-                (minute, hour) = P401FindMinuteHour(tempCombo);
-                Console.WriteLine($"minute {minute}, hour {hour}");
+                (int minute, int hour) = P401FindMinuteHour(tempCombo, turnedOn);
+
+                var minutePadded = "0000000" + minute.ToString();
+                var minuteTrimmed = minutePadded.Substring(minutePadded.Count()-2, 2);
+                result.Add(hour.ToString() + ":" + minuteTrimmed);
+                return;
             }
+
+            for(int i = 0; i < 10; i++)
+            {
+                // tempCombo[i] = 
+            }
+
         }
-        public (int, int) P401FindMinuteHour(int[] tempCombo)
+        public (int, int) P401FindMinuteHour(int[] tempCombo, int turnedOn)
         {
             int minute = 0;
             int hour = 0;
             Console.WriteLine($"tempCombo {tempCombo[0]}");
-            for (int i = 1; i < 10; i++)
+            for (int i = 0; i < turnedOn; i++)
             {
                 if (tempCombo[i] == 1)
                 {
