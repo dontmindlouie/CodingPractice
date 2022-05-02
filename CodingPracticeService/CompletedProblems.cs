@@ -9,6 +9,20 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P404SumOfLeftLeaves(TreeNode root)
+        {
+            // 404 Sum  of Left Leaves
+            // time O(n) space O(1)
+            if (root == null) return 0;
+            int leftSum = 0;
+            if (root.left != null && root.left.left == null && root.left.right == null)
+            {
+                leftSum = root.left.val;
+            }
+            leftSum += P404SumOfLeftLeaves(root.left);
+            leftSum += P404SumOfLeftLeaves(root.right);
+            return leftSum;
+        }
         public IList<string> P401ReadBinaryWatch(int turnedOn)
         {
           // 401. Binary Watch
