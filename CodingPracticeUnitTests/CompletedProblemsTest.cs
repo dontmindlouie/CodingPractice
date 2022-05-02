@@ -26,12 +26,23 @@ namespace CodingPracticeUnitTests
         public void P401ReadBinaryWatchTest()
         {
             //var input = 808201;
-            var input = 3;
+            var input = 9;
             //var expected = true;
-            var expected = new List<int>() ;
+            var expected = new List<string>() ;
             var cp = new CompletedProblems();
             var actual = cp.P401ReadBinaryWatch(input);
-            Assert.Equal((List<int>)actual, expected);
+            Assert.Equal(actual, (IList<string>)expected);
+        }
+        [Fact]
+        public void P401FindMinuteHourTest()
+        {
+            var tempCombo = new int[] { 0, 0, 0, 1, 0, 1, 0, 0, 1, 0 };
+            var turnedOn = 3;
+            //var expected = true;
+            var expected = "4:40";
+            var cp = new CompletedProblems();
+            var actual = cp.P401FindMinuteHour(tempCombo);
+            Assert.Equal(actual, expected);
         }
         [Fact]
         public void P367IsPerfectSquareTest()

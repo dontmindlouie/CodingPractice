@@ -11,71 +11,61 @@ namespace CodingPracticeService
     {
         public IList<string> P401ReadBinaryWatch(int turnedOn)
         {
-            // 401. Binary Watch
-            var minute = new int[] { 1, 2, 4, 8, 16, 32 };
+          // 401. Binary Watch
+          // time very slow O(n2) space 0(n)
+              var minute = new int[] { 1, 2, 4, 8, 16, 32 };
             var hour = new int[] { 1, 2, 4, 8 };
-            var totalLength = minute.Length + hour.Length;
+            var totalLength = minute.Length + hour.Length; //10
             var result = new List<string>();
 
-            P401IterateWatch(turnedOn, new int[] { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 }, result, 0, end: totalLength, index: 0);
+            P401IterateWatch(turnedOn, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, result, 0, end: totalLength, index: 0);
 
             return (IList<string>)result;
         }
         public void P401IterateWatch(int turnedOn, int[] tempCombo, IList<string> result, int start, int end, int index)
         {
-            //TODO remove
-
-            if (index == turnedOn)
+            var oneCount = tempCombo.Where<int>(x => x == 1).Count();
+            if (oneCount > turnedOn) return;
+            if (oneCount == turnedOn)
             {
-                (int minute, int hour) = P401FindMinuteHour(tempCombo, turnedOn);
-
-                var minutePadded = "0000000" + minute.ToString();
-                var minuteTrimmed = minutePadded.Substring(minutePadded.Count()-2, 2);
-                result.Add(hour.ToString() + ":" + minuteTrimmed);
+                string hourMinute = P401FindMinuteHour(tempCombo);
+                if (hourMinute != "na") result.Add(hourMinute);
                 return;
             }
 
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 2 && index < end; i++)
             {
-                // tempCombo[i] = 
+                tempCombo[index] = new int[] { 0, 1 }[i];
+                P401IterateWatch(turnedOn, tempCombo, result, start, end, index + 1);
+                tempCombo[index] = 0;
             }
-
         }
-        public (int, int) P401FindMinuteHour(int[] tempCombo, int turnedOn)
+        public string P401FindMinuteHour(int[] tempCombo)
         {
             int minute = 0;
             int hour = 0;
-            Console.WriteLine($"tempCombo {tempCombo[0]}");
-            for (int i = 0; i < turnedOn; i++)
+            int mintemp = 1;
+            int hourtemp = 1;
+            for (int i = 0; i < tempCombo.Length; i++)
             {
                 if (tempCombo[i] == 1)
                 {
                     if (i < 6)
                     {
-                        if (minute == 0) minute = 1;
-                        else minute = (minute << 1) | 1;
+                        minute += mintemp;
                     }
                     else
                     {
-                        if (hour == 0) hour = 1;
-                        else hour = (hour << 1) | 1;
+                        hour += hourtemp;
                     }
                 }
-                else
-                {
-                    if (i < 6)
-                    {
-                        if (minute == 0) minute = 0;
-                        else minute = (minute << 1);
-                    }
-                    else
-                    {
-                        if (hour == 0) hour = 0;
-                        else hour = (hour << 1);
-                    }
-                }
+                if (i < 6) mintemp = mintemp << 1;
+                else hourtemp = hourtemp << 1;
             }
-            return (minute, hour);
+            if (minute > 59 || hour > 11) return "na";
+            var minutePadded = "0000000" + minute.ToString();
+            var minuteTrimmed = minutePadded.Substring(minutePadded.Count() - 2, 2);
+            return hour.ToString() + ":" + minuteTrimmed;
         }
         public int P374GuessNumber(int n)
         {

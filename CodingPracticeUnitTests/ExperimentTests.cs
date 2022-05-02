@@ -237,6 +237,11 @@ namespace CodingPracticeUnitTests
             var testInt3 = -2147483648;
             var testBit3 = Convert.ToString(testInt3, 2);
 
+            int initial = 1;
+
+            initial = initial << 1 | 1;
+
+
             var asdf = "10000000000000000000000000000000".ToCharArray().Length;
 
             var result1 = testInt1 << 1;
