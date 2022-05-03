@@ -9,6 +9,26 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P455FindContentChildren(int[] g, int[] s)
+        {
+            // 455. Assign Cookies
+            // time O(max(s,g)) space O(1)
+            Array.Sort(g);
+            Array.Sort(s);
+            int gIndex = 0;
+            int sIndex = 0;
+            int count = 0;
+            while (sIndex < s.Length && gIndex < g.Length)
+            {
+                if (s[sIndex] >= g[gIndex])
+                {
+                    count++;
+                    gIndex++;
+                }
+                sIndex++;
+            }
+            return count;
+        }
         public IList<int> P448FindDisappearedNumbers(int[] nums)
         {
             // 448. Find All Numbers Disappeared in an Array
