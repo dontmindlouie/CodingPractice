@@ -9,6 +9,33 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P414ThirdMax(int[] nums)
+        {
+            // 414. Third Maximum Number
+            // time O(nums) space O(1)
+            var maxSet = new int?[3];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = 0; j < maxSet.Length; j++)
+                {
+                    if (maxSet[j] == null) maxSet[j] = nums[i];
+                    if (nums[i] == maxSet[j]) break;
+                    if (nums[i] > maxSet[j])
+                    {
+                        for (int k = maxSet.Length - 1; k > j; k--)
+                        {
+                            maxSet[k] = maxSet[k - 1];
+                        }
+                        maxSet[j] = nums[i];
+                        //Console.WriteLine($"0: {maxSet[0]}, 1: {maxSet[1]}, 2: {maxSet[2]}");
+                        break;
+                    }
+                }
+            }
+            if (maxSet[2] != null) return (int)maxSet[2];
+            if (maxSet[0] == null) return 0;
+            return (int)maxSet[0];
+        }
         public int P404SumOfLeftLeaves(TreeNode root)
         {
             // 404 Sum  of Left Leaves
