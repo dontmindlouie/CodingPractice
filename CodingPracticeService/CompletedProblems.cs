@@ -9,6 +9,19 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P434CountSegments(string s)
+        {
+            // 434. Number of Segments in a String
+            // time O(n) space O(1)
+            int segCount = 0;
+            if (s.Length == 0) return 0;
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                if (s[i] != ' ' && s[i + 1] == ' ') segCount++;
+            }
+            if (s[s.Length - 1] != ' ') return segCount + 1;
+            return segCount;
+        }
         public int P414ThirdMax(int[] nums)
         {
             // 414. Third Maximum Number
