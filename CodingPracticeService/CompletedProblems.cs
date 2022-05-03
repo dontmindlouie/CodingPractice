@@ -9,6 +9,18 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public IList<int> P448FindDisappearedNumbers(int[] nums)
+        {
+            // 448. Find All Numbers Disappeared in an Array
+            // time O(n) space O(n)
+            var numsAll = new List<int>();
+            for (int i = 1; i < nums.Length + 1; i++)
+            {
+                numsAll.Add(i);
+            }
+            var missing = numsAll.Except(nums);
+            return missing.ToList();
+        }
         public int P434CountSegments(string s)
         {
             // 434. Number of Segments in a String
@@ -19,6 +31,7 @@ namespace CodingPracticeService
             {
                 if (s[i] != ' ' && s[i + 1] == ' ') segCount++;
             }
+            
             if (s[s.Length - 1] != ' ') return segCount + 1;
             return segCount;
         }
