@@ -9,6 +9,35 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P459RepeatedSubstringPattern(string s)
+        {
+            // 459. Repeated Substring Pattern
+            // time O(n^2) space O(n)
+            //Console.WriteLine(s);
+            if (s.Length == 0) return false;
+            var temp = "";
+            var subStringStart = 0;
+            var subStringCount = 1;
+            var index = 0;
+            while (subStringCount * 2 < s.Length + 1)
+            {
+                temp = s.Substring(subStringStart, subStringCount);
+                while (temp == s.Substring(index, subStringCount))
+                {
+                    index = index + subStringCount;
+                    //Console.WriteLine($"temp: {temp}, index:{index},subStringCount:{subStringCount}");
+                    if (index + subStringCount > s.Length) break;
+                    if (index + subStringCount == s.Length)
+                    {
+                        if (temp == s.Substring(index, subStringCount))
+                            return true;
+                    }
+                }
+                subStringCount++;
+                index = 0;
+            }
+            return false;
+        }
         public int P455FindContentChildren(int[] g, int[] s)
         {
             // 455. Assign Cookies
