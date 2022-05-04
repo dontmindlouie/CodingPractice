@@ -9,6 +9,25 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P461HammingDistance(int x, int y)
+        {
+            // 461. Hamming Distance
+            // time O(32) space O(1)
+            //Get rightmost bit
+            // if (x != y) count++;
+            //shift right x32
+            var count = 0;
+            for (int i = 0; i < 32; i++)
+            {
+                var xrightBit = x & 1;
+                var yrightBit = y & 1;
+                if (xrightBit != yrightBit)
+                    count++;
+                x = x >> 1;
+                y = y >> 1;
+            }
+            return count;
+        }
         public bool P459RepeatedSubstringPattern(string s)
         {
             // 459. Repeated Substring Pattern
