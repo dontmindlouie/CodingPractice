@@ -9,6 +9,53 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P463IslandPerimeter(int[][] grid)
+        {
+            // 463. Island Perimeter
+            // time O(x*y+land) space O(x*y)
+            var startLand = P463FindLand(grid);
+            var perimCount = P463FindPerim(startLand, grid);
+            return perimCount;
+        }
+
+        public List<(int, int)> P463FindLand(int[][] grid)
+        {
+            int x = 0;
+            int y = 0;
+            List<(int, int)> landList = new List<(int, int)>();
+            while (x < grid.Length)
+            {
+                while (y < grid[x].Length)
+                {
+                    if (grid[x][y] == 1)
+                    {
+                        //Console.WriteLine($"x:{x}, y:{y}");
+                        landList.Add((x, y));
+                    }
+                    y++;
+                }
+                y = 0;
+                x++;
+            }
+            return landList;
+        }
+        public int P463FindPerim(List<(int, int)> landList, int[][] grid)
+        {
+            int perimCount = 0;
+            foreach ((int, int) land in landList)
+            {
+                if (land.Item1 - 1 < 0) perimCount++;
+                else if (grid[land.Item1 - 1][land.Item2] == 0) perimCount++;
+                if (land.Item1 + 1 > grid.Length - 1) perimCount++;
+                else if (grid[land.Item1 + 1][land.Item2] == 0) perimCount++;
+
+                if (land.Item2 - 1 < 0) perimCount++;
+                else if (grid[land.Item1][land.Item2 - 1] == 0) perimCount++;
+                if (land.Item2 + 1 > grid[land.Item1].Length - 1) perimCount++;
+                else if (grid[land.Item1][land.Item2 + 1] == 0) perimCount++;
+            }
+            return perimCount;
+        }
         public int P461HammingDistance(int x, int y)
         {
             // 461. Hamming Distance
