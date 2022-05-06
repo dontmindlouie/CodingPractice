@@ -9,6 +9,33 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string P482LicenseKeyFormatting(string s, int k)
+        {
+            //482. License Key Formatting
+            // remove dashes
+            // ToUpper();
+            // back to front in k groups
+            var result = "";
+            var sUpper = s.ToUpper();
+            var sCharArray = sUpper.ToCharArray();
+            var sAlphaNum = sCharArray.Where(x => char.IsLetterOrDigit(x)).ToArray();
+
+            //"ASDF" k = 2
+            // "F" 2
+            // "DF" 1
+            int groupCount = k;
+            for (int i = sAlphaNum.Length - 1; i >= 0; i--)
+            {
+                if (groupCount <= 0)
+                {
+                    result = "-" + result;
+                    groupCount = k;
+                }
+                result = sAlphaNum[i] + result;
+                groupCount--;
+            }
+            return result;
+        }
         public int P463IslandPerimeter(int[][] grid)
         {
             // 463. Island Perimeter
@@ -16,6 +43,7 @@ namespace CodingPracticeService
             var startLand = P463FindLand(grid);
             var perimCount = P463FindPerim(startLand, grid);
             return perimCount;
+            
         }
 
         public List<(int, int)> P463FindLand(int[][] grid)

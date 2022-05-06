@@ -2,12 +2,23 @@ using CodingPracticeService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace CodingPracticeUnitTests
 {
     public class ExperimentTests
     {
+        [Fact]
+        public string StringCheck()
+        {
+            var tempstring = "as-fe! ";
+            var temp2 = tempstring.ToCharArray();
+            var temp3 = temp2.Where(x => Char.IsLetterOrDigit(x));
+            var temp4 = new string(temp3.ToArray());
+            return temp4;
+        }
+
         static void combinationUtil(int[] arr, int[] data,
                              int start, int end,
                              int index, int r)
