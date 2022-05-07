@@ -9,6 +9,43 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int[] P496NextGreaterElement(int[] nums1, int[] nums2)
+        {
+            // 496. Next Greater Element I
+            // time O(n1*n2) space O(1)
+            var result = new int[nums1.Length];
+            for (int i = 0; i < nums1.Length; i++)
+            {
+
+                // find first nums1[i] in nums2[];
+                var i2 = -1;
+                for (int j = 0; j < nums2.Length; j++)
+                {
+                    if (nums2[j] == nums1[i])
+                    {
+                        i2 = j;
+                    }
+                }
+
+                if (i2 == -1)
+                {
+                    result[i] = i2;
+                    continue;
+                }
+                // find the next greater element
+                var greater = -1;
+                for (int k = i2; k < nums2.Length; k++)
+                {
+                    if (nums2[k] > nums1[i])
+                    {
+                        greater = nums2[k];
+                        break;
+                    }
+                }
+                result[i] = greater;
+            }
+            return result;
+        }
         public int P485FindMaxConsecutiveOnes(int[] nums)
         {
             //485. Max Consecutive Ones

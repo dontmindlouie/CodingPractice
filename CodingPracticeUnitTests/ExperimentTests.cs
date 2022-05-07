@@ -10,6 +10,13 @@ namespace CodingPracticeUnitTests
     public class ExperimentTests
     {
         [Fact]
+        public string LinqTest()
+        {
+            var tempArray = new int[] { 2, 5, 3, 6, 4 };
+
+            return temp4;
+        }
+        [Fact]
         public string StringCheck()
         {
             var tempstring = "as-fe! ";
