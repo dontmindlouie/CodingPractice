@@ -9,6 +9,42 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P485FindMaxConsecutiveOnes(int[] nums)
+        {
+            //485. Max Consecutive Ones
+            // time O(nums.Length) space O(1)
+            if (nums.Length == 0) return 0;
+            int currentCount = nums[0];
+            int maxCount = 0;
+            int previousNum = nums[0];
+            if (nums.Length == 1) return nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (previousNum == 0)
+                {
+                    if (nums[i] == 0) continue;
+                    else
+                    {
+                        currentCount++;
+                    }
+                }
+                else
+                {
+                    if (nums[i] == 0)
+                    {
+                        if (maxCount < currentCount)
+                            maxCount = currentCount;
+                        currentCount = 0;
+                    }
+                    else currentCount++;
+                }
+                previousNum = nums[i];
+            }
+
+            if (maxCount < currentCount)
+                maxCount = currentCount;
+            return maxCount;
+        }
         public int P495TeetosRevenge(int[] timeSeries, int duration)
         {
             // teeto's revenge
