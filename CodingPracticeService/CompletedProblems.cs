@@ -9,6 +9,37 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P495TeetosRevenge(int[] timeSeries, int duration)
+        {
+            // teeto's revenge
+            // 495. Teemo Attacking
+            int totalPoisonTime = 0;
+            int poisonTime = 0;
+            int totalTime = timeSeries[0];
+            int toxicI = 0;
+            while (toxicI < timeSeries.Length || poisonTime < duration)
+            {
+                if (toxicI < timeSeries.Length)
+                {
+                    if (poisonTime == duration)
+                        totalTime = timeSeries[toxicI];
+                    while(toxicI < timeSeries.Length && 
+                        totalTime >= timeSeries[toxicI])
+                    {
+                        poisonTime = 0;
+                        toxicI++;
+                    }
+                    // time skip
+                }
+                if (poisonTime < duration)
+                {
+                    poisonTime++;
+                    totalPoisonTime++;
+                }
+                totalTime++;
+            }
+            return totalPoisonTime;
+        }
         public string P482LicenseKeyFormatting(string s, int k)
         {
             //482. License Key Formatting

@@ -23,6 +23,16 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void P495TeetosRevengeTest()
+        {
+            var timeSeries = new int[] { 89, 91, 91, 93 };
+            var duration = 5;
+            var expected = 9;
+            var cp = new CompletedProblems();
+            var actual = cp.P495TeetosRevenge(timeSeries, duration);
+            Assert.Equal( expected, actual);
+        }
+        [Fact]
         public void P401ReadBinaryWatchTest()
         {
             //var input = 808201;
