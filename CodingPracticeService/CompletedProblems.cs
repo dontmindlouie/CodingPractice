@@ -9,6 +9,51 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string[] P500FindWords(string[] words)
+        {
+            // 500. Keyboard Row
+            // time O(word.Length*lengthOfEachWord) space O(words*word);
+            var row1 = "qwertyuiop";
+            var row2 = "asdfghjkl";
+            var row3 = "zxcvbnm";
+            var result = new List<string>();
+            foreach (var word in words)
+            {
+                var wordLow = word.ToLower();
+                var doesRow1Contain = true;
+                var doesRow2Contain = true;
+                var doesRow3Contain = true;
+                for (int i = 0; i < wordLow.Length; i++)
+                {
+                    if (!row1.Contains(wordLow[i]))
+                    {
+                        doesRow1Contain = false;
+                        break;
+                    }
+                }
+                for (int i = 0; i < wordLow.Length; i++)
+                {
+                    if (!row2.Contains(wordLow[i]))
+                    {
+                        doesRow2Contain = false;
+                        break;
+                    }
+                }
+                for (int i = 0; i < wordLow.Length; i++)
+                {
+                    if (!row3.Contains(wordLow[i]))
+                    {
+                        doesRow3Contain = false;
+                        break;
+                    }
+                }
+                if (doesRow1Contain || doesRow2Contain || doesRow3Contain)
+                {
+                    result.Add(word);
+                }
+            }
+            return result.ToArray();
+        }
         public int[] P496NextGreaterElement(int[] nums1, int[] nums2)
         {
             // 496. Next Greater Element I

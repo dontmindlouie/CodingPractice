@@ -13,8 +13,12 @@ namespace CodingPracticeUnitTests
         public string LinqTest()
         {
             var tempArray = new int[] { 2, 5, 3, 6, 4 };
+            var tempString = "aabcc";
 
-            return temp4;
+            var result = tempString.Contains("abc");
+
+
+            return result;
         }
         [Fact]
         public string StringCheck()
