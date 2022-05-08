@@ -9,6 +9,30 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string[] P506FindRelativeRanks(int[] score)
+        {
+            //506. Relative Ranks
+            // time O(2n) space O(n);
+            var queue = new PriorityQueue<int, int>();
+            for (int i = 0; i < score.Length; i++)
+            {
+                queue.Enqueue(i, score[i]);
+            }
+            var placements = new string[score.Length];
+            int place = score.Length;
+            while (queue.Count > 3)
+            {
+                placements[queue.Dequeue()] = place.ToString();
+                place--;
+            }
+            if (placements.Length >= 3)
+                placements[queue.Dequeue()] = "Bronze Medal";
+            if (placements.Length >= 2)
+                placements[queue.Dequeue()] = "Silver Medal";
+            if (placements.Length >= 1)
+                placements[queue.Dequeue()] = "Gold Medal";
+            return placements;
+        }
         public int[] P501FindMode(TreeNode root)
         {
             // 501. Find Mode in Binary Search Tree
