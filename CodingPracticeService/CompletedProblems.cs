@@ -9,6 +9,31 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P520DetectCapitalUse(string word)
+        {
+            //520. Detect Capital
+            // time O(n) space O(1)
+            var isAllUpper = true;
+            var isAllLower = true;
+            var isProper = true;
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (i == 0)
+                {
+                    isAllUpper = Char.IsUpper(word[i]);
+                    isAllLower = Char.IsLower(word[i]);
+                    isProper = Char.IsUpper(word[i]);
+                }
+                else
+                {
+                    if (isAllUpper) isAllUpper = Char.IsUpper(word[i]);
+                    if (isAllLower) isAllLower = Char.IsLower(word[i]);
+                    if (isProper) isProper = Char.IsLower(word[i]);
+                }
+            }
+            var isValid = isAllUpper || isAllLower || isProper;
+            return isValid;
+        }
         public string[] P506FindRelativeRanks(int[] score)
         {
             //506. Relative Ranks

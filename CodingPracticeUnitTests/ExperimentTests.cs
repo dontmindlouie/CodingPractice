@@ -39,6 +39,7 @@ namespace CodingPracticeUnitTests
         {
             var tempstring = "as-fe! ";
             var temp2 = tempstring.ToCharArray();
+            var flag = Char.IsUpper
             var temp3 = temp2.Where(x => Char.IsLetterOrDigit(x));
             var temp4 = new string(temp3.ToArray());
             return temp4;
