@@ -46,4 +46,3 @@ G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.ge
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\xunit.abstractions.dll
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\xunit.core.dll
 G:\Projects\Repo\CodingPracticeService\bin\Debug\net5.0\xunit.assert.dll
-G:\Projects\Repo\CodingPracticeService\obj\Debug\net5.0\CodingPracticeService.csproj.AssemblyReference.cache

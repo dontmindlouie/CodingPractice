@@ -10,11 +10,22 @@ namespace CodingPracticeUnitTests
     public class ExperimentTests
     {
         [Fact]
+        public string PriorityQueueTest()
+        {
+            var queue = new PriorityQueue<int,int>();
+            queue.Enqueue(1, 1);
+            queue.Enqueue(3, 3);
+            queue.Enqueue(2, 2);
+            var whatIsThis = queue.Dequeue();
+            var tempString = "asdf";
+            return tempString;
+        }
+        [Fact]
         public string LinqTest()
         {
             var tempIntArray = new int[] { 2, 5, 3, 6, 4 };
             var tempString = "aabcc";
-            var tempDictionary = new Dictionary<int, int>() { { 1,5}, { 2, 2}, { 3, 6} }
+            var tempDictionary = new Dictionary<int, int>() { { 1, 5 }, { 2, 2 }, { 3, 6 } };
             var temp = tempIntArray.ElementAt(0);
             tempDictionary.Count();
             var tempKeyValPair = tempDictionary.ElementAt(0);

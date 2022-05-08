@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    "net6.0": {
       "coverlet.collector/3.1.2": {
         "type": "package",
         "build": {
@@ -14,10 +14,10 @@
           "System.Configuration.ConfigurationManager": "4.4.0"
         },
         "compile": {
-          "lib/netcoreapp3.0/FluentAssertions.dll": {}
+          "lib/net6.0/FluentAssertions.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/FluentAssertions.dll": {}
+          "lib/net6.0/FluentAssertions.dll": {}
         }
       },
       "Microsoft.CodeCoverage/17.1.0": {
@@ -2204,7 +2204,7 @@
       },
       "CodingPracticeService/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.Extensions.Hosting": "5.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
@@ -7417,7 +7417,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    "net6.0": [
       "CodingPracticeService >= 1.0.0",
       "FluentAssertions >= 6.6.0",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
@@ -7444,15 +7444,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {
             "G:\\Projects\\Repo\\CodingPracticeService\\CodingPracticeService.csproj": {
               "projectPath": "G:\\Projects\\Repo\\CodingPracticeService\\CodingPracticeService.csproj"
@@ -7467,8 +7467,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "FluentAssertions": {
             "target": "Package",
@@ -7514,7 +7514,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
