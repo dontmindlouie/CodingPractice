@@ -9,6 +9,41 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P530GetMinimumDifference(TreeNode root)
+        {
+            // 530. Minimum Absolute Difference in BST
+            var valList = new List<int>();
+            if (root == null) return -1;
+            valList.Add(root.val);
+            var minVal = -1;
+            var leftDiff = P530GetMinimumDifference(root.left, valList);
+            var rightDiff = P530GetMinimumDifference(root.right, valList);
+            if (leftDiff != -1)
+                minVal = leftDiff;
+            if (minVal == -1 && rightDiff != -1)
+            {
+                minVal = rightDiff;
+            }
+            if (rightDiff != -1)
+                minVal = Math.Min(minVal, rightDiff);
+            return minVal;
+        }
+        public int P530GetMinimumDifference(TreeNode root, List<int> valList)
+        {
+            if (root == null) return -1;
+            var minDiff = Math.Abs(root.val - valList[0]);
+            foreach (int val in valList)
+            {
+                minDiff = Math.Min(minDiff, Math.Abs(root.val - val));
+            }
+            valList.Add(root.val);
+            var leftDiff = P530GetMinimumDifference(root.left, valList);
+            var rightDiff = P530GetMinimumDifference(root.right, valList);
+            if (leftDiff != -1) minDiff = Math.Min(minDiff, leftDiff);
+            if (rightDiff != -1) minDiff = Math.Min(minDiff, rightDiff);
+
+            return minDiff;
+        }
         public bool P520DetectCapitalUse(string word)
         {
             //520. Detect Capital

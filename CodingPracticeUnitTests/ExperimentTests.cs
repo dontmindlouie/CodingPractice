@@ -28,9 +28,10 @@ namespace CodingPracticeUnitTests
             var tempDictionary = new Dictionary<int, int>() { { 1, 5 }, { 2, 2 }, { 3, 6 } };
             var temp = tempIntArray.ElementAt(0);
             tempDictionary.Count();
+            var tempList = new List<int>() { 4, 3, 6, 2, 2 };
             var tempKeyValPair = tempDictionary.ElementAt(0);
             var result = tempString.Contains("abc");
-
+            tempList.Min();
 
             return tempString;
         }
@@ -39,7 +40,6 @@ namespace CodingPracticeUnitTests
         {
             var tempstring = "as-fe! ";
             var temp2 = tempstring.ToCharArray();
-            var flag = Char.IsUpper
             var temp3 = temp2.Where(x => Char.IsLetterOrDigit(x));
             var temp4 = new string(temp3.ToArray());
             return temp4;
