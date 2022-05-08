@@ -12,13 +12,16 @@ namespace CodingPracticeUnitTests
         [Fact]
         public string LinqTest()
         {
-            var tempArray = new int[] { 2, 5, 3, 6, 4 };
+            var tempIntArray = new int[] { 2, 5, 3, 6, 4 };
             var tempString = "aabcc";
-
+            var tempDictionary = new Dictionary<int, int>() { { 1,5}, { 2, 2}, { 3, 6} }
+            var temp = tempIntArray.ElementAt(0);
+            tempDictionary.Count();
+            var tempKeyValPair = tempDictionary.ElementAt(0);
             var result = tempString.Contains("abc");
 
 
-            return result;
+            return tempString;
         }
         [Fact]
         public string StringCheck()

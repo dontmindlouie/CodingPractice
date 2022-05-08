@@ -9,6 +9,50 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int[] P501FindMode(TreeNode root)
+        {
+            // 501. Find Mode in Binary Search Tree
+            // time O(n2) space O(n)
+            var modeMap = new Dictionary<int, int>();
+            if (root == null) return new int[0];
+            P501FindMode(root, modeMap);
+            // find max frequency
+            var modeList = P501FindMaxFreq(modeMap);
+            return modeList.ToArray();
+        }
+        public void P501FindMode(TreeNode root, Dictionary<int, int> modeMap)
+        {
+            if (root == null) return;
+            if (modeMap.ContainsKey(root.val))
+            {
+                modeMap[root.val]++;
+            }
+            else
+            {
+                modeMap.Add(root.val, 1);
+            }
+            P501FindMode(root.left, modeMap);
+            P501FindMode(root.right, modeMap);
+        }
+        public List<int> P501FindMaxFreq(Dictionary<int, int> modeMap)
+        {
+            var modeList = new List<int>();
+            var maxInt = 0;
+            for (int i = 0; i < modeMap.Count; i++)
+            {
+                if (modeMap.ElementAt(i).Value > maxInt)
+                {
+                    maxInt = modeMap.ElementAt(i).Value;
+                    modeList = new List<int>();
+                    modeList.Add(modeMap.ElementAt(i).Key);
+                }
+                else if (modeMap.ElementAt(i).Value == maxInt)
+                {
+                    modeList.Add(modeMap.ElementAt(i).Key);
+                }
+            }
+            return modeList;
+        }
         public string[] P500FindWords(string[] words)
         {
             // 500. Keyboard Row
