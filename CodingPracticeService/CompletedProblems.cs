@@ -9,6 +9,76 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int RandomTestA(List<int> buildingCount, List<int> routerLocation, List<int> routerRange)
+        {
+            //building index, served count
+            var buildingDict = new Dictionary<int, int>();
+
+            for (int i = 0; i < routerLocation.Count; i++)
+            {
+
+                for (int ri = routerLocation[i] - routerRange[i]; ri <= routerLocation[i] + routerRange[i]; ri++)
+                {
+                    if (ri < 0 || ri >= buildingCount.Count)
+                        continue;
+                    if (buildingDict.ContainsKey(ri))
+                        buildingDict[ri]++;
+                    else
+                        buildingDict.Add(ri, 1);
+                }
+            }
+
+            var servedCount = 0;
+            for (int i = 0; i < buildingCount.Count; i++)
+            {
+                if (buildingDict.ContainsKey(i))
+                    if (buildingDict[i] >= buildingCount[i])
+                        servedCount++;
+            }
+
+            return servedCount;
+        }
+        //Predict Days
+        public List<int> RandomTestA2(List<int> day, int k)
+        {
+            var nonIncrease = 0;
+            var nonDecrease = 0;
+            var previousDay = day[0];
+            // day index, count of non decrease
+            var nonIncDays = new Dictionary<int, int>();
+            var result = new List<int>();
+            if (day.Count == 0) return new List<int>();
+            for (int i = 1; i < day.Count; i++)
+            {
+                if (nonIncrease >= k)
+                {
+                    nonIncDays.Add(i, 0);
+                }
+                for (int j = 0; j < i; j++)
+                {
+                }
+
+                if (previousDay > day[i])
+                {
+                    nonIncrease++;
+                    nonDecrease = 0;
+                }
+                if (previousDay < day[i])
+                {
+                    nonIncrease = 0;
+                    nonDecrease++;
+                }
+                else
+                {
+                    nonIncrease++;
+                    nonDecrease++;
+                }
+                previousDay = day[i];
+            }
+            return result;
+
+        }
+
         public int P530GetMinimumDifference(TreeNode root)
         {
             // 530. Minimum Absolute Difference in BST

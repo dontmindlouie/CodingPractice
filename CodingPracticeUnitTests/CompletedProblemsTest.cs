@@ -23,6 +23,34 @@ namespace CodingPracticeUnitTests
             Assert.Equal(actual, expected);
         }
         [Fact]
+        public void RandomTestATest()
+        {
+            var input1a = new List<int>();
+            var input1 = new List<int>() { 2, 1, 1, 3};
+            var input1b = new List<int>() { 4, 6, 2, 5, 6, 2, 3 };
+            var input2 = new List<int>() { 1, 2 };
+            var input2a = new List<int>();
+            var input2b = new List<int>() { 2, 3, 7, 1, 3, 7, 4, 6, 1 };
+            var input3 = new List<int>() { 2, 0 };
+            var input3a = new List<int>();
+            var input3b = new List<int>() { 7, 0, 0, 2, 5, 2, 6, 1, 3 };
+            var expected = 9;
+            var cp = new CompletedProblems();
+            var actual = cp.RandomTestA(input1b, input2b, input3b);
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void RandomTestA2Test()
+        {
+            var input1 = new List<int>() { 2, 3, 7, 1, 3, 7, 4, 6, 1 };
+            var input2 = 2;
+            var expected = new List<int>();
+            var cp = new CompletedProblems();
+            var actual = cp.RandomTestA2(input1, input2);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void P495TeetosRevengeTest()
         {
             var timeSeries = new int[] { 89, 91, 91, 93 };

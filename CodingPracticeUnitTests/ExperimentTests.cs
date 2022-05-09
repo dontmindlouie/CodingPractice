@@ -33,6 +33,8 @@ namespace CodingPracticeUnitTests
             var result = tempString.Contains("abc");
             tempList.Min();
 
+            var tesmp2 = new List<int>();
+
             return tempString;
         }
         [Fact]
