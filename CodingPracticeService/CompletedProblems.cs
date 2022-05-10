@@ -9,6 +9,47 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string P541ReverseStr(string s, int k)
+        {
+            // 541. Reverse String II
+            int reverseCount = 0;
+            int notReverseCount = 0;
+            int reverseStart = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (reverseCount == k && notReverseCount < (2 * k))
+                {
+                    var reverseThis = s.Substring(reverseStart, k);
+                    reverseThis = new string(reverseThis.Reverse().ToArray());
+                    //Console.WriteLine(reverseThis);
+                    s = s.Substring(0, reverseStart)
+                        + reverseThis
+                        + s.Substring((reverseStart + k), s.Length - (reverseStart + k));
+                    reverseCount = 0;
+                }
+                else if (notReverseCount == (2 * k))
+                {
+                    reverseStart = reverseStart + notReverseCount;
+                    notReverseCount = 0;
+                    reverseCount = 0;
+                }
+                reverseCount++;
+                notReverseCount++;
+            }
+            //Console.WriteLine($"reverseCount: {reverseCount}, notReverse:{notReverseCount}");
+            //Console.WriteLine($"reverseStart: {reverseStart}");
+            if (notReverseCount <= k)
+            {
+                var reverseThis = s.Substring(reverseStart, reverseCount);
+                reverseThis = new string(reverseThis.Reverse().ToArray());
+                s = s.Substring(0, reverseStart)
+                    + reverseThis;
+                reverseCount = 0;
+            }
+
+            return s;
+        }
         public int RandomTestA(List<int> buildingCount, List<int> routerLocation, List<int> routerRange)
         {
             //building index, served count

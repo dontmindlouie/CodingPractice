@@ -22,6 +22,8 @@ namespace CodingPracticeUnitTests
             var actual = ""; //cp.ProblemTemplate();
             Assert.Equal(actual, expected);
         }
+
+
         [Fact]
         public void RandomTestATest()
         {

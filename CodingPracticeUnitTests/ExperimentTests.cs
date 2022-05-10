@@ -18,6 +18,7 @@ namespace CodingPracticeUnitTests
             queue.Enqueue(2, 2);
             var whatIsThis = queue.Dequeue();
             var tempString = "asdf";
+            var test = new string(tempString.Reverse().ToArray());
             return tempString;
         }
         [Fact]
