@@ -9,6 +9,34 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public bool P551CheckRecord(string s)
+        {
+            // 551. Student Attendance Record I
+            int abs2Days = 0;
+            int lateCount = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == 'A')
+                {
+                    abs2Days++;
+                    lateCount = 0;
+                }
+                else if (s[i] == 'L')
+                {
+                    lateCount++;
+                }
+                else if (s[i] == 'P')
+                {
+                    lateCount = 0;
+                }
+
+                if (lateCount >= 3)
+                    return false;
+            }
+            if (abs2Days >= 2) return false;
+            else return true;
+        }
         public int P543DiameterOfBinaryTree(TreeNode root)
         {
             // 543. Diameter of Binary Tree

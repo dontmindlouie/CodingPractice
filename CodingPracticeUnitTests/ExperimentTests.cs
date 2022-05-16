@@ -19,7 +19,6 @@ namespace CodingPracticeUnitTests
             var whatIsThis = queue.Dequeue();
             var tempString = "asdf";
             var test = new string(tempString.Reverse().ToArray());
-            Math.Max()
             return tempString;
         }
         [Fact]
