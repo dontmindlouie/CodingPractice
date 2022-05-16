@@ -9,9 +9,30 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public int P543DiameterOfBinaryTree(TreeNode root)
+        {
+            // 543. Diameter of Binary Tree
+            int len = 0;
+            return P543DiameterOfBinaryTree(root, ref len);
+        }
+        public int P543DiameterOfBinaryTree(TreeNode root, ref int len)
+        {
+            if (root == null) return 0;
+            var leftLen = len;
+            var rightLen = len;
+            var leftPivot = P543DiameterOfBinaryTree(root.left, ref leftLen);
+            var rightPivot = P543DiameterOfBinaryTree(root.right, ref rightLen);
+            len = Math.Max(rightLen, leftLen);
+            len++;
+            //Console.WriteLine($"val:{root.val}, len:{len}, leftLen:{leftLen}, rightLen:{rightLen}, leftPivot:{leftPivot}, rightPivot:{rightPivot}");
+            var pivot = leftLen + rightLen;
+            var maxPivot = Math.Max(pivot, Math.Max(rightPivot, leftPivot));
+            return maxPivot;
+        }
         public string P541ReverseStr(string s, int k)
         {
             // 541. Reverse String II
+            // time O(n)
             int reverseCount = 0;
             int notReverseCount = 0;
             int reverseStart = 0;
@@ -45,7 +66,6 @@ namespace CodingPracticeService
                 reverseThis = new string(reverseThis.Reverse().ToArray());
                 s = s.Substring(0, reverseStart)
                     + reverseThis;
-                reverseCount = 0;
             }
 
             return s;
