@@ -9,6 +9,33 @@ namespace CodingPracticeService
 {
     public class CompletedProblems
     {
+        public string P557ReverseWords3(string s)
+        {
+            // 557. Reverse Words in a String III
+            string tempS;
+            string result = "";
+            int start = 0;
+            char[] tempA;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == ' ')
+                {
+                    tempS = s.Substring(start, i - start);
+                    tempA = tempS.ToCharArray();
+                    Array.Reverse(tempA);
+                    tempS = new string(tempA);
+                    result = result + tempS + " ";
+                    start = i + 1;
+                }
+            }
+            tempS = s.Substring(start, s.Length - start);
+            tempA = tempS.ToCharArray();
+            Array.Reverse(tempA);
+            tempS = new string(tempA);
+            result = result + tempS;
+            return result;
+        }
         public bool P551CheckRecord(string s)
         {
             // 551. Student Attendance Record I
